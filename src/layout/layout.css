@@ -1,0 +1,11 @@
+.layout {
+  @apply bg-[#fff];
+}
+
+.layout__content-modify {
+  @apply ml-[calc(68px+1rem)] py-3  lg:ml-[calc(68px+188px)] transition-all duration-[0.5s];
+}
+
+.layout__content {
+  @apply transition-all duration-[0.5s]  min-h-screen px-5 py-2;
+}
