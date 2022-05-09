@@ -4,15 +4,17 @@ import {
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import { Movie } from "../typings";
-import SingleMovie from "./SingleMovie";
-import Thumbnail from "./SingleMovie";
+import { MovieTV } from "../typings";
+import InfoCard from "./InfoCard";
+import SingleMovieOrTv from "./SingleMovieOrTv";
+
 
 interface props {
-  movies: Movie[];
+  data: MovieTV[];
+  condition: string;
 }
 
-const MovieRow: React.FC<props> = ({ movies }) => {
+const MovieTVRow: React.FC<props> = ({ data, condition }) => {
   const movieRowRef = useRef<HTMLDivElement>(null);
   const [isMoved, setIsMoved] = useState<boolean>(false);
 
@@ -42,8 +44,12 @@ const MovieRow: React.FC<props> = ({ movies }) => {
         ref={movieRowRef}
         className="flex overflow-x-scroll scrollbar-hide gap-3 py-2"
       >
-        {movies.map((movie, movieIndex) => (
-          <SingleMovie key={movieIndex} movie={movie} />
+        {data.map((TvOrMovie, TvOrMovieIndex) => (
+          <SingleMovieOrTv
+            key={TvOrMovieIndex}
+            TvOrMovie={TvOrMovie}
+            condition={condition}
+          />
         ))}
       </div>
 
@@ -57,4 +63,4 @@ const MovieRow: React.FC<props> = ({ movies }) => {
   );
 };
 
-export default MovieRow;
+export default MovieTVRow;

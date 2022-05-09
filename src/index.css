@@ -28,10 +28,14 @@
   }
 
   .widget {
-    @apply w-[calc(68px+156px)] fixed top-0 -right-[100%]  h-full bg-[#1e293b] transition-all duration-[0.5s] z-[200px] shadow-md;
+    @apply w-[calc(68px+250px)] fixed top-5 -right-[100%]  h-full bg-[#1e293b] transition-all duration-[0.5s] z-[200px] shadow-md;
   }
 
   .show__widget {
     @apply right-0;
+  }
+
+  .transition-5 {
+    @apply transition-all duration-[0.5] ease-out;
   }
 }

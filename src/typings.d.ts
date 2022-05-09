@@ -3,7 +3,7 @@ export interface Genre {
   name: string;
 }
 
-export interface Movie {
+export interface MovieTV {
   title: string;
   backdrop_path: string;
   media_type?: string;
@@ -15,6 +15,7 @@ export interface Movie {
   origin_country: string[];
   original_language: string;
   original_title: string;
+  original_name: string;
   overview: string;
   popularity: number;
   poster_path: string;
@@ -30,4 +31,9 @@ export interface Element {
     | "Clip"
     | "Trailer"
     | "Teaser";
+}
+
+export interface Genre {
+  id: number;
+  name: string;
 }

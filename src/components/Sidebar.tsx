@@ -14,7 +14,7 @@ const Sidebar = () => {
     <div
       className={` ${
         toggleSidebar ? "show__sidebar sidebar" : "sidebar"
-      } text-[#afa5d9]/40 md:show__sidebar border-r-2 border-[#afa5d9]/40`}
+      } text-[#afa5d9]/40 md:show__sidebar pt-14 md:pt-0`}
     >
       <nav className="nav flex flex-col h-full justify-between">
         <div className="nav__list p-2">

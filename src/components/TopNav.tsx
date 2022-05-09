@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillGridFill } from "react-icons/bs";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { IoNotifications } from "react-icons/io5";
@@ -10,9 +10,31 @@ const TopNav = () => {
   const { toggleSidebar, setToggleSidebar, toggleWidget, setToggleWidget } =
     useGlobalContext();
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+
+  // detecting the scrolling effect of a page and style the header
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        // setIsScrolled(true);
+        console.log("scrolled");
+      } else {
+        // setIsScrolled(false);
+        console.log("not scrolled");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <header className="flex justify-between px-2  sm:px-5 items-center h-[3rem] text-[#afa5d9]/40 transition-all duration-[0.5s] md:">
+    <header
+      className={`flex justify-between px-2 pt-3  sm:px-5 items-center h-[3rem] text-[#afa5d9]/40 transition-all duration-[0.5s] w-full fixed top-0 left-0 z-50  md:ml-[calc(224px+1rem)] md:pr-[calc(224px+2rem)] xl:md:pr-[calc(500px+2rem)] bg-gray-900`}
+    >
       {/* left side */}
       <div className="flex justify-center items-center gap-5">
         <HiMenuAlt4

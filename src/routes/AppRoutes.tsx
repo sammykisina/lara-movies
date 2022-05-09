@@ -7,6 +7,7 @@ import Help from "../pages/Help";
 import Home from "../pages/Home";
 import Notifications from "../pages/Notifications";
 import Recent from "../pages/Recent";
+import Series from "../pages/Series";
 import Settings from "../pages/Settings";
 import TopRated from "../pages/TopRated";
 
@@ -22,6 +23,9 @@ const AppRoutes = () => {
       <Route path="/top-rated" element={<TopRated />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/help" element={<Help />} />
+
+      {/* internal routes */}
+      <Route path="/series" element={<Series />} />
     </Routes>
   );
 };

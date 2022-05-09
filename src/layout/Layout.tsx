@@ -16,9 +16,9 @@ const Layout: React.FC = () => {
         <Sidebar />
 
         {/* middle side */}
-        <div className="flex-1 md:ml-[calc(224px+1rem)] transition-all duration-[0.5s] xl:mr-[calc(224px+1rem)] px-2  sm:px-5 w-full overflow-x-auto">
+        <div className="flex-1 md:ml-[calc(224px+1rem)] transition-all duration-[0.5s] xl:mr-[calc(300px+1rem)] px-2  sm:px-5 w-full overflow-x-auto scrollbar-hide relative">
           <TopNav />
-          <div className="mt-4">
+          <div className="mt-24">
             <AppRoutes />
           </div>
         </div>
@@ -27,6 +27,9 @@ const Layout: React.FC = () => {
         <div>
           <Widget />
         </div>
+
+        {/* footer */}
+        {/* <Footer /> */}
       </section>
     </BrowserRouter>
   );

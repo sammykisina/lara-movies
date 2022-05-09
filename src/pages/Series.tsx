@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import requests from "../constants/requests";
-import { MovieTV } from "../typings";
+import { AiFillStar } from "react-icons/ai";
 import { MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
-import MovieRow from "../components/MovieTVRow";
-import { AiFillStar } from "react-icons/ai";
 import MovieTVRow from "../components/MovieTVRow";
+import MovieRow from "../components/MovieTVRow";
+import requests from "../constants/requests";
+import { MovieTV } from "../typings";
 
-const Home = () => {
-  const [trendingMovies, setTrendingMovies] = useState<MovieTV[]>([]);
+const Series = () => {
+  const [trendingTvs, setTrendingTvs] = useState<MovieTV[]>([]);
+
+  console.log("trendingTvs", trendingTvs);
+
   // change to a list checked from the db
   const [netflixOriginals, setNetflixOriginals] = useState<MovieTV[]>([]);
 
-  const [topRated, setTopRated] = useState<MovieTV[]>([]);
-  const [popularMovies, setPopularMovies] = useState<MovieTV[]>([]);
+  const [topRatedTvs, setTopRatedTvs] = useState<MovieTV[]>([]);
+  const [popularTvs, setPopularTvs] = useState<MovieTV[]>([]);
 
   // useEffect to fetch api data when the component loads
   const getData = async () => {
@@ -25,25 +28,25 @@ const Home = () => {
       // horrorMovies,
       // romanceMovies,
       // documentaries,
-      trendingMovies,
+      trendingTvs,
       netflixOriginals,
-      topRated,
-      popularMovies,
+      topRatedTvs,
+      popularTvs,
     ] = await Promise.all([
-      fetch(requests.fetchTreadingMovies).then((res) => res.json()),
+      fetch(requests.fetchTopRatedTv).then((res) => res.json()),
       fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
-      fetch(requests.fetchTopRatedMovies).then((res) => res.json()),
-      fetch(requests.fetchPopularMovies).then((res) => res.json()),
+      fetch(requests.fetchTopRatedTv).then((res) => res.json()),
+      fetch(requests.fetchPopularTvs).then((res) => res.json()),
       // fetch(requests.fetchComedyMovies).then((res) => res.json()),
       // fetch(requests.fetchHorrorMovies).then((res) => res.json()),
       // fetch(requests.fetchRomanceMovies).then((res) => res.json()),
       // fetch(requests.fetchDocumentaries).then((res) => res.json()),
     ]);
 
-    setTrendingMovies(trendingMovies?.results);
+    setTrendingTvs(trendingTvs?.results);
     setNetflixOriginals(netflixOriginals?.results);
-    setTopRated(topRated?.results);
-    setPopularMovies(popularMovies?.results);
+    setTopRatedTvs(topRatedTvs?.results);
+    setPopularTvs(popularTvs?.results);
   };
   useEffect(() => {
     getData();
@@ -56,7 +59,7 @@ const Home = () => {
         {/* title */}
         <div className="flex justify-between">
           <span className="text-white/70 text-lg font-semibold">
-            Trending movies
+            Trending Tvs
           </span>
 
           <Link to="" className="text-white/70 flex items-center gap-2">
@@ -66,10 +69,10 @@ const Home = () => {
         </div>
 
         {/* movies */}
-        {trendingMovies.length === 0 ? (
+        {trendingTvs.length === 0 ? (
           <div>holders</div>
         ) : (
-          <MovieTVRow data={trendingMovies} condition="display" />
+          <MovieTVRow data={trendingTvs} condition="display" />
         )}
       </div>
 
@@ -100,7 +103,7 @@ const Home = () => {
         {/* title */}
         <div className="flex justify-between">
           <span className="text-white/70 text-lg font-semibold flex items-center gap-5">
-            <span>Top Rated</span> <AiFillStar className="text-[#ef4b4b]" />
+            <span>Top Rated Tvs</span> <AiFillStar className="text-[#ef4b4b]" />
           </span>
 
           <Link to="" className="text-white/70 flex items-center gap-2">
@@ -110,10 +113,10 @@ const Home = () => {
         </div>
 
         {/* movies */}
-        {topRated.length === 0 ? (
+        {topRatedTvs.length === 0 ? (
           <div>holders</div>
         ) : (
-          <MovieTVRow data={topRated} condition="display" />
+          <MovieTVRow data={topRatedTvs} condition="display" />
         )}
       </div>
 
@@ -132,14 +135,14 @@ const Home = () => {
         </div>
 
         {/* movies */}
-        {popularMovies.length === 0 ? (
+        {popularTvs.length === 0 ? (
           <div>holders</div>
         ) : (
-          <MovieTVRow data={popularMovies} condition="display" />
+          <MovieTVRow data={popularTvs} condition="display" />
         )}
       </div>
     </section>
   );
 };
 
-export default Home;
+export default Series;
