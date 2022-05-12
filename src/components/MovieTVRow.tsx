@@ -35,7 +35,7 @@ const MovieTVRow: React.FC<props> = ({ data, condition }) => {
   };
 
   return (
-    <div className=" group relative">
+    <div className="group relative">
       <IoIosArrowDropleftCircle
         onClick={() => handleClick("right")}
         className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition  group-hover:opacity-100 text-[#ef4b4b]`}

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import MovieRow from "../components/MovieTVRow";
 import { AiFillStar } from "react-icons/ai";
 import MovieTVRow from "../components/MovieTVRow";
+import Loader from "../components/loader/Loader";
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState<MovieTV[]>([]);
@@ -67,7 +68,7 @@ const Home = () => {
 
         {/* movies */}
         {trendingMovies.length === 0 ? (
-          <div>holders</div>
+          <Loader condition="display" />
         ) : (
           <MovieTVRow data={trendingMovies} condition="display" />
         )}
@@ -89,7 +90,7 @@ const Home = () => {
 
         {/* movies */}
         {netflixOriginals.length === 0 ? (
-          <div>holders</div>
+          <Loader condition="watching" />
         ) : (
           <MovieTVRow data={netflixOriginals} condition="watching" />
         )}
@@ -111,7 +112,7 @@ const Home = () => {
 
         {/* movies */}
         {topRated.length === 0 ? (
-          <div>holders</div>
+          <Loader condition="display" />
         ) : (
           <MovieTVRow data={topRated} condition="display" />
         )}
@@ -133,7 +134,7 @@ const Home = () => {
 
         {/* movies */}
         {popularMovies.length === 0 ? (
-          <div>holders</div>
+          <Loader condition="display" />
         ) : (
           <MovieTVRow data={popularMovies} condition="display" />
         )}

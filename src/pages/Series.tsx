@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Loader from "../components/loader/Loader";
+import PlaceHolder from "../components/loader/PlaceHolder";
 import MovieTVRow from "../components/MovieTVRow";
 import MovieRow from "../components/MovieTVRow";
 import requests from "../constants/requests";
@@ -49,7 +51,9 @@ const Series = () => {
     setPopularTvs(popularTvs?.results);
   };
   useEffect(() => {
-    getData();
+    setTimeout(() => {
+      getData();
+    }, 1000);
   }, []);
 
   return (
@@ -70,7 +74,7 @@ const Series = () => {
 
         {/* movies */}
         {trendingTvs.length === 0 ? (
-          <div>holders</div>
+          <Loader condition="display" />
         ) : (
           <MovieTVRow data={trendingTvs} condition="display" />
         )}
@@ -92,14 +96,14 @@ const Series = () => {
 
         {/* movies */}
         {netflixOriginals.length === 0 ? (
-          <div>holders</div>
+          <Loader condition="watching" />
         ) : (
           <MovieTVRow data={netflixOriginals} condition="watching" />
         )}
       </div>
 
       {/* top rated */}
-      <div className=" mt-12">
+      <div className="mt-12">
         {/* title */}
         <div className="flex justify-between">
           <span className="text-white/70 text-lg font-semibold flex items-center gap-5">
@@ -114,7 +118,7 @@ const Series = () => {
 
         {/* movies */}
         {topRatedTvs.length === 0 ? (
-          <div>holders</div>
+          <Loader condition="display" />
         ) : (
           <MovieTVRow data={topRatedTvs} condition="display" />
         )}
@@ -136,7 +140,7 @@ const Series = () => {
 
         {/* movies */}
         {popularTvs.length === 0 ? (
-          <div>holders</div>
+          <Loader condition="display" />
         ) : (
           <MovieTVRow data={popularTvs} condition="display" />
         )}
