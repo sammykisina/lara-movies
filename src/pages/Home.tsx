@@ -7,6 +7,7 @@ import MovieRow from "../components/MovieTVRow";
 import { AiFillStar } from "react-icons/ai";
 import MovieTVRow from "../components/MovieTVRow";
 import Loader from "../components/loader/Loader";
+import useAuth from "../hooks/useAuth";
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState<MovieTV[]>([]);
@@ -15,6 +16,10 @@ const Home = () => {
 
   const [topRated, setTopRated] = useState<MovieTV[]>([]);
   const [popularMovies, setPopularMovies] = useState<MovieTV[]>([]);
+
+  const { user } = useAuth();
+
+  console.log("user in home page", user);
 
   // useEffect to fetch api data when the component loads
   const getData = async () => {

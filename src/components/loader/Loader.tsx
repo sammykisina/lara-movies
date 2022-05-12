@@ -12,8 +12,8 @@ const Loader: React.FC<props> = ({ condition }) => {
         condition === "display" ? "h-[200px] " : "h-[150px] "
       } flex overflow-scroll scrollbar-hide gap-2`}
     >
-      {Array.from(Array(Math.ceil(16)).keys()).map(() => (
-        <div className=" relative">
+      {Array.from(Array(Math.ceil(16)).keys()).map((index) => (
+        <div key={index} className=" relative">
           <PlaceHolder
             extraStyles={` ${
               condition === "display" ? "h-[200px]" : "h-[150px]"

@@ -28,7 +28,7 @@
   }
 
   .widget {
-    @apply w-[calc(68px+250px)] fixed top-5 -right-[100%]  h-full bg-[#1e293b] transition-all duration-[0.5s] z-[200px] shadow-md;
+    @apply w-[calc(68px+250px)] fixed top-5 -right-[100%]  h-full bg-[#1e293b] transition-all duration-[0.5s] z-50 shadow-md;
   }
 
   .show__widget {
@@ -37,6 +37,10 @@
 
   .transition-5 {
     @apply transition-all duration-[0.5] ease-out;
+  }
+
+  .input {
+    @apply w-full rounded bg-[#333] px-5 py-1.5 placeholder-[gray] outline-none focus:bg-[#454545];
   }
 
   .background {

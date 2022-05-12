@@ -9,13 +9,18 @@ import { AiOutlinePlus } from "react-icons/ai";
 import requests from "../constants/requests";
 import { Genre, MovieTV } from "../typings";
 import SingleGenre from "./SingleGenre";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdChevronRight } from "react-icons/md";
 import MovieTVRow from "./MovieTVRow";
+import useAuth from "../hooks/useAuth";
 
 const Widget = () => {
   const { toggleWidget, setToggleWidget } = useGlobalContext();
   const [netflixOriginals, setNetflixOriginals] = useState<MovieTV[]>([]);
+
+  const { user } = useAuth();
+  console.log("user in witget", user);
+  const navigate = useNavigate();
 
   // sent request
   const getWidgetData = async () => {
@@ -47,20 +52,34 @@ const Widget = () => {
       {/* the body */}
       <div>
         {/* the current user */}
-        <div className="flex gap-3 items-center mt-4 mb-4">
-          <div className="w-12 h-12">
-            <img src={Image} alt="" className=" object-cover  rounded-full" />
-          </div>
-
-          <div className="flex items-center">
-            <div className="flex flex-col">
-              <span className=" text-white">Sammy K</span>
-              <span>sammy.k.mutua@gmail.com</span>
+        {user ? (
+          <div className="flex gap-3 items-center mt-4 mb-4">
+            <div className="w-12 h-12 bg-red-500 rounded-full  flex justify-center items-center text-5xl text-white">
+              <span className="mb-2">{user?.email!.charAt(0)} </span>
             </div>
 
-            <BiChevronDown className="w-10 h-10 cursor-pointer" />
+            <div className="flex items-center">
+              <div className="flex flex-col">
+                <span className=" text-white">
+                  {user?.email!.substring(0, user?.email!.indexOf("@"))}
+                </span>
+                <span>{user?.email}</span>
+              </div>
+
+              <BiChevronDown className="w-10 h-10 cursor-pointer" />
+            </div>
           </div>
-        </div>
+        ) : (
+          <button
+            onClick={() => {
+              navigate("/login");
+              setToggleWidget(false);
+            }}
+            className="mt-4 mb-4  w-full py-2 rounded-full text-lg  text-white bg-[#e50914]"
+          >
+            login
+          </button>
+        )}
 
         {/* search input */}
         <div className="flex gap-3 px-2 rounded-md bg-slate-900/50 py-1 ">

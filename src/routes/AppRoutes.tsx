@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import Login from "../pages/auth/Login";
 import Bookmarked from "../pages/Bookmarked";
 import Community from "../pages/Community";
 import Discover from "../pages/Discover";
@@ -26,6 +27,7 @@ const AppRoutes = () => {
 
       {/* internal routes */}
       <Route path="/series" element={<Series />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };
