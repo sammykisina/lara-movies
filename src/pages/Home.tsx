@@ -47,7 +47,9 @@ const Home = () => {
     setPopularMovies(popularMovies?.results);
   };
   useEffect(() => {
-    getData();
+    setTimeout(() => {
+      getData();
+    }, 1000);
   }, []);
 
   return (
