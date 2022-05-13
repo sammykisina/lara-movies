@@ -10,17 +10,18 @@ import requests from "../constants/requests";
 import { Genre, MovieTV } from "../typings";
 import SingleGenre from "./SingleGenre";
 import { Link, useNavigate } from "react-router-dom";
-import { MdChevronRight } from "react-icons/md";
+import { MdChevronRight, MdSearch } from "react-icons/md";
 import MovieTVRow from "./MovieTVRow";
 import useAuth from "../hooks/useAuth";
 import PopOver from "./popover/PopOver";
+import Search from "./Search";
+import Icons from "./ui/Icons";
 
 const Widget = () => {
   const { toggleWidget, setToggleWidget } = useGlobalContext();
   const [netflixOriginals, setNetflixOriginals] = useState<MovieTV[]>([]);
 
   const { user } = useAuth();
-  console.log("user in witget", user);
   const navigate = useNavigate();
 
   // sent request
@@ -67,38 +68,30 @@ const Widget = () => {
           </button>
         )}
 
-        {/* search input */}
-        <div className="flex gap-3 px-2 rounded-md bg-slate-900/50 py-1 ">
-          <FiSearch className="w-10 h-10" />
-          <input
-            type="text"
-            className="w-full bg-transparent outline-none"
-            placeholder="Search in Lara"
-          />
-          <BiGitPullRequest className="w-10 h-10 rotate-90" />
-        </div>
+        {/* search button */}
+        <Search />
 
         {/* media and recently view */}
         <div className="flex flex-col justify-between h-[520px]">
           {/* media services */}
           <div className="mt-10 ">
-            <span className=" text-lg text-white">Media Service</span>
+            <span className=" text-lg text-white/50">Media Service</span>
 
             <div className="grid grid-cols-3 gap-y-4 py-4">
               {mediaServices.map((mediaService, mediaServiceIndex) => {
-                const { id, icon } = mediaService;
+                const { icon } = mediaService;
                 return (
                   <button
                     key={mediaServiceIndex}
-                    className="border w-12 h-12 flex justify-center items-center text-3xl rounded-full hover:text-[#ef4b4b] transition-3"
+                    className="ring-1 ring-[#132f4c] w-12 h-12 flex justify-center items-center text-3xl rounded-md transition-3 hover:bg-[#132f4c]/50"
                   >
                     {icon}
                   </button>
                 );
               })}
 
-              <button className="bg-gray-50/50 w-12 h-12 flex justify-center items-center rounded-full transition-5 hover:bg-[#ef4b4b] ">
-                <AiOutlinePlus className="text-3xl text-white" />
+              <button className=" w-12 h-12 flex justify-center items-center rounded-full transition-5 hover:bg-[#132f4c]/50 ">
+                <AiOutlinePlus className="text-3xl text-[#66b2ff]" />
               </button>
             </div>
           </div>

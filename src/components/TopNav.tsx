@@ -1,35 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { BsFillGridFill } from "react-icons/bs";
-import { HiMenuAlt4 } from "react-icons/hi";
-import { IoNotifications } from "react-icons/io5";
+import { HiMenuAlt4, HiOutlineViewGrid } from "react-icons/hi";
+import { MdOutlineNotifications } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import { allTopnavRouteLinks } from "../constants/topnavRouteLinks";
 import { useGlobalContext } from "../contexts/AppContext";
+import Icons from "./ui/Icons";
 
 const TopNav = () => {
-  const { toggleSidebar, setToggleSidebar, toggleWidget, setToggleWidget } =
-    useGlobalContext();
+  const { setToggleSidebar, setToggleWidget } = useGlobalContext();
   const location = useLocation();
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   // detecting the scrolling effect of a page and style the header
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        // setIsScrolled(true);
-        console.log("scrolled");
-      } else {
-        // setIsScrolled(false);
-        console.log("not scrolled");
-      }
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY > 0) {
+  //       // setIsScrolled(true);
+  //       console.log("scrolled");
+  //     } else {
+  //       // setIsScrolled(false);
+  //       console.log("not scrolled");
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+  const openNotifications = () => {};
 
   return (
     <header
@@ -37,10 +37,18 @@ const TopNav = () => {
     >
       {/* left side */}
       <div className="flex justify-center items-center gap-5">
-        <HiMenuAlt4
-          className={`text-[#4723d9] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] md:hidden`}
-          onClick={() => setToggleSidebar(true)}
-        />
+        <div className="md:hidden">
+          <Icons
+            iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50
+      cursor-pointer"
+            icon={
+              <HiMenuAlt4
+                className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
+              />
+            }
+            purpose={() => setToggleSidebar(true)}
+          />
+        </div>
 
         <div className="flex flex-row gap-3 ">
           {allTopnavRouteLinks.map((topnavRouteLink, topnavRouteIndex) => {
@@ -48,9 +56,9 @@ const TopNav = () => {
 
             return (
               <Link
-                className={`px-1 sm:px-3 rounded-md transition-all duration-[0.5s] hover:ring-1 hover:ring-[#ef4b4b] ${
+                className={`px-1 sm:px-3 rounded-md transition-all duration-[0.5s] hover:ring-1 hover:ring-[#132746] ${
                   route === location.pathname
-                    ? " ring-1 ring-[#ef4b4b] text-[#afa5d9]"
+                    ? " ring-1 ring-[#132746] text-[#afa5d9]"
                     : ""
                 }`}
                 key={topnavRouteIndex}
@@ -64,11 +72,21 @@ const TopNav = () => {
       </div>
       {/* right side */}
       <div className="flex  items-center gap-2 text-xl">
-        <IoNotifications />
-        <BsFillGridFill
-          className=" cursor-pointer xl:hidden"
-          onClick={() => setToggleWidget(true)}
+        <Icons
+          iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50
+      cursor-pointer"
+          icon={<MdOutlineNotifications className="text-[#66b2ff]" />}
+          purpose={() => openNotifications()}
         />
+
+        <div className="xl:hidden">
+          <Icons
+            iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50
+      cursor-pointer"
+            icon={<HiOutlineViewGrid className="text-[#66b2ff] " />}
+            purpose={() => setToggleWidget(true)}
+          />
+        </div>
       </div>
     </header>
   );

@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Loader from "../components/loader/Loader";
-import PlaceHolder from "../components/loader/PlaceHolder";
 import MovieTVRow from "../components/MovieTVRow";
-import MovieRow from "../components/MovieTVRow";
 import requests from "../constants/requests";
 import { MovieTV } from "../typings";
 
 const Series = () => {
   const [trendingTvs, setTrendingTvs] = useState<MovieTV[]>([]);
-
-  console.log("trendingTvs", trendingTvs);
 
   // change to a list checked from the db
   const [netflixOriginals, setNetflixOriginals] = useState<MovieTV[]>([]);
@@ -22,28 +18,13 @@ const Series = () => {
 
   // useEffect to fetch api data when the component loads
   const getData = async () => {
-    const [
-      // trendingNow,
-      // topRated,
-      // actionMovies,
-      // comedyMovies,
-      // horrorMovies,
-      // romanceMovies,
-      // documentaries,
-      trendingTvs,
-      netflixOriginals,
-      topRatedTvs,
-      popularTvs,
-    ] = await Promise.all([
-      fetch(requests.fetchTopRatedTv).then((res) => res.json()),
-      fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
-      fetch(requests.fetchTopRatedTv).then((res) => res.json()),
-      fetch(requests.fetchPopularTvs).then((res) => res.json()),
-      // fetch(requests.fetchComedyMovies).then((res) => res.json()),
-      // fetch(requests.fetchHorrorMovies).then((res) => res.json()),
-      // fetch(requests.fetchRomanceMovies).then((res) => res.json()),
-      // fetch(requests.fetchDocumentaries).then((res) => res.json()),
-    ]);
+    const [trendingTvs, netflixOriginals, topRatedTvs, popularTvs] =
+      await Promise.all([
+        fetch(requests.fetchTopRatedTv).then((res) => res.json()),
+        fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
+        fetch(requests.fetchTopRatedTv).then((res) => res.json()),
+        fetch(requests.fetchPopularTvs).then((res) => res.json()),
+      ]);
 
     setTrendingTvs(trendingTvs?.results);
     setNetflixOriginals(netflixOriginals?.results);
@@ -120,7 +101,11 @@ const Series = () => {
         {topRatedTvs.length === 0 ? (
           <Loader condition="display" />
         ) : (
-          <MovieTVRow data={topRatedTvs} condition="display" />
+          <MovieTVRow
+            data={topRatedTvs}
+            condition="display"
+            condition_two="watch_later"
+          />
         )}
       </div>
 
@@ -142,7 +127,11 @@ const Series = () => {
         {popularTvs.length === 0 ? (
           <Loader condition="display" />
         ) : (
-          <MovieTVRow data={popularTvs} condition="display" />
+          <MovieTVRow
+            data={popularTvs}
+            condition="display"
+            condition_two="watch_later"
+          />
         )}
       </div>
     </section>

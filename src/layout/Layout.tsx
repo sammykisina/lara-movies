@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { modalState } from "../atoms/modalAtom";
+import Modal from "../components/modal/Modal";
 import Sidebar from "../components/Sidebar";
 import TopNav from "../components/TopNav";
 import Widget from "../components/Widget";
@@ -8,6 +11,7 @@ import AppRoutes from "../routes/AppRoutes";
 
 const Layout: React.FC = () => {
   const { toggleSidebar, setToggleSidebar } = useGlobalContext();
+  const showModal = useRecoilValue(modalState);
 
   return (
     <BrowserRouter>
@@ -28,8 +32,8 @@ const Layout: React.FC = () => {
           <Widget />
         </div>
 
-        {/* footer */}
-        {/* <Footer /> */}
+        {/* modal for each movie */}
+        {showModal && <Modal />}
       </section>
     </BrowserRouter>
   );

@@ -62,4 +62,12 @@
       left: 100%;
     }
   }
+
+  .popOverBtnStyles {
+    @apply flex items-center gap-4   py-1 px-3 rounded-lg text-white/50 hover:bg-[#132f4c]/50 transition-5;
+  }
+
+  .modalBtn {
+    @apply flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/50 transition hover:border-white hover:bg-white/10;
+  }
 }

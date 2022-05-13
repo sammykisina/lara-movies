@@ -5,9 +5,14 @@ import InfoCard from "./InfoCard";
 interface props {
   TvOrMovie: MovieTV;
   condition: string;
+  condition_two?: string;
 }
 
-const SingleMovieOrTv: React.FC<props> = ({ TvOrMovie, condition }) => {
+const SingleMovieOrTv: React.FC<props> = ({
+  TvOrMovie,
+  condition,
+  condition_two,
+}) => {
   return (
     <div
       className={`relative flex ${
@@ -25,10 +30,9 @@ const SingleMovieOrTv: React.FC<props> = ({ TvOrMovie, condition }) => {
       />
 
       <InfoCard
-        original_title={TvOrMovie?.original_title || TvOrMovie.original_name}
-        release_date={TvOrMovie?.release_date}
-        vote_average={TvOrMovie?.vote_average}
         condition={condition}
+        condition_two={condition_two}
+        tvOrMovie={TvOrMovie}
       />
     </div>
   );

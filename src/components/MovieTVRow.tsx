@@ -4,17 +4,20 @@ import {
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { useRecoilValue } from "recoil";
+import { modalState } from "../atoms/modalAtom";
 import { MovieTV } from "../typings";
 import InfoCard from "./InfoCard";
+import Modal from "./modal/Modal";
 import SingleMovieOrTv from "./SingleMovieOrTv";
-
 
 interface props {
   data: MovieTV[];
   condition: string;
+  condition_two?: string;
 }
 
-const MovieTVRow: React.FC<props> = ({ data, condition }) => {
+const MovieTVRow: React.FC<props> = ({ data, condition, condition_two }) => {
   const movieRowRef = useRef<HTMLDivElement>(null);
   const [isMoved, setIsMoved] = useState<boolean>(false);
 
@@ -49,6 +52,7 @@ const MovieTVRow: React.FC<props> = ({ data, condition }) => {
             key={TvOrMovieIndex}
             TvOrMovie={TvOrMovie}
             condition={condition}
+            condition_two={condition_two}
           />
         ))}
       </div>

@@ -3,11 +3,9 @@ import requests from "../constants/requests";
 import { MovieTV } from "../typings";
 import { MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
-import MovieRow from "../components/MovieTVRow";
 import { AiFillStar } from "react-icons/ai";
 import MovieTVRow from "../components/MovieTVRow";
 import Loader from "../components/loader/Loader";
-import useAuth from "../hooks/useAuth";
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState<MovieTV[]>([]);
@@ -17,20 +15,9 @@ const Home = () => {
   const [topRated, setTopRated] = useState<MovieTV[]>([]);
   const [popularMovies, setPopularMovies] = useState<MovieTV[]>([]);
 
-  const { user } = useAuth();
-
-  console.log("user in home page", user);
-
   // useEffect to fetch api data when the component loads
   const getData = async () => {
     const [
-      // trendingNow,
-      // topRated,
-      // actionMovies,
-      // comedyMovies,
-      // horrorMovies,
-      // romanceMovies,
-      // documentaries,
       trendingMovies,
       netflixOriginals,
       topRated,
@@ -40,10 +27,6 @@ const Home = () => {
       fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
       fetch(requests.fetchTopRatedMovies).then((res) => res.json()),
       fetch(requests.fetchPopularMovies).then((res) => res.json()),
-      // fetch(requests.fetchComedyMovies).then((res) => res.json()),
-      // fetch(requests.fetchHorrorMovies).then((res) => res.json()),
-      // fetch(requests.fetchRomanceMovies).then((res) => res.json()),
-      // fetch(requests.fetchDocumentaries).then((res) => res.json()),
     ]);
 
     setTrendingMovies(trendingMovies?.results);
@@ -121,7 +104,11 @@ const Home = () => {
         {topRated.length === 0 ? (
           <Loader condition="display" />
         ) : (
-          <MovieTVRow data={topRated} condition="display" />
+          <MovieTVRow
+            data={topRated}
+            condition="display"
+            condition_two="watch_later"
+          />
         )}
       </div>
 
@@ -143,7 +130,11 @@ const Home = () => {
         {popularMovies.length === 0 ? (
           <Loader condition="display" />
         ) : (
-          <MovieTVRow data={popularMovies} condition="display" />
+          <MovieTVRow
+            data={popularMovies}
+            condition="display"
+            condition_two="watch_later"
+          />
         )}
       </div>
     </section>
