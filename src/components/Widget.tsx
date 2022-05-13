@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { MdChevronRight } from "react-icons/md";
 import MovieTVRow from "./MovieTVRow";
 import useAuth from "../hooks/useAuth";
+import PopOver from "./popover/PopOver";
 
 const Widget = () => {
   const { toggleWidget, setToggleWidget } = useGlobalContext();
@@ -53,22 +54,7 @@ const Widget = () => {
       <div>
         {/* the current user */}
         {user ? (
-          <div className="flex gap-3 items-center mt-4 mb-4">
-            <div className="w-12 h-12 bg-red-500 rounded-full  flex justify-center items-center text-5xl text-white">
-              <span className="mb-2">{user?.email!.charAt(0)} </span>
-            </div>
-
-            <div className="flex items-center">
-              <div className="flex flex-col">
-                <span className=" text-white">
-                  {user?.email!.substring(0, user?.email!.indexOf("@"))}
-                </span>
-                <span>{user?.email}</span>
-              </div>
-
-              <BiChevronDown className="w-10 h-10 cursor-pointer" />
-            </div>
-          </div>
+          <PopOver />
         ) : (
           <button
             onClick={() => {
