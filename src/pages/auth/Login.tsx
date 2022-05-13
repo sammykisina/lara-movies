@@ -65,7 +65,7 @@ const Login = () => {
                 {...register("password")}
                 type="password"
                 className="input"
-                placeholder="email"
+                placeholder="Password"
               />
 
               {errors.password && (
