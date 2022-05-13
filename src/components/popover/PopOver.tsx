@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import { CgProfile } from "react-icons/cg";
 
 const PopOver = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <div className="max-w-sm">
@@ -56,7 +56,10 @@ const PopOver = () => {
 
                 <div className="flex  justify-between">
                   <span></span>
-                  <button className="flex items-center gap-4  bg-red-400 py-1  px-3 rounded-lg text-white hover:bg-red-500">
+                  <button
+                    onClick={() => logout()}
+                    className="flex items-center gap-4  bg-red-400 py-1  px-3 rounded-lg text-white hover:bg-red-500"
+                  >
                     <AiOutlineLogin className="w-7 h-7 " />
                     <span>Log out</span>
                   </button>
