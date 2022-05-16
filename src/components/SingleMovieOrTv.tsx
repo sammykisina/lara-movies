@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { MovieTV } from "../typings";
 import InfoCard from "./InfoCard";
 
@@ -14,6 +15,7 @@ const SingleMovieOrTv: React.FC<props> = ({
   condition_two,
 }) => {
   return (
+    // <Link to={`/movie/${TvOrMovie.id}`}>
     <div
       className={`relative flex ${
         condition === "display"
@@ -21,13 +23,24 @@ const SingleMovieOrTv: React.FC<props> = ({
           : "min-w-[300px] h-[150px] "
       } cursor-pointer  transition duration-200 ease-out`}
     >
-      <img
-        src={`https://image.tmdb.org/t/p/w500${
-          TvOrMovie.backdrop_path || TvOrMovie.poster_path
+      <Link
+        to={`/${TvOrMovie?.media_type === "movie" ? "movie" : "tv"}/${
+          TvOrMovie.id
         }`}
-        alt=""
-        className="rounded-lg object-cover"
-      />
+        className={`relative flex ${
+          condition === "display"
+            ? "h-[200px]  min-w-[300px]"
+            : "min-w-[300px] h-[150px] "
+        } cursor-pointer  transition duration-200 ease-out`}
+      >
+        <img
+          src={`https://image.tmdb.org/t/p/w500${
+            TvOrMovie.backdrop_path || TvOrMovie.poster_path
+          }`}
+          alt=""
+          className="rounded-lg object-cover"
+        />
+      </Link>
 
       <InfoCard
         condition={condition}
@@ -35,6 +48,7 @@ const SingleMovieOrTv: React.FC<props> = ({
         tvOrMovie={TvOrMovie}
       />
     </div>
+    // </Link>
   );
 };
 

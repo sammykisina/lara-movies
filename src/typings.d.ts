@@ -9,7 +9,7 @@ export interface MovieTV {
   media_type?: string;
   release_date?: string;
   first_air_date: string;
-  genre_ids: number[];
+  genres: Genre[];
   id: number;
   name: string;
   origin_country: string[];
@@ -21,6 +21,8 @@ export interface MovieTV {
   poster_path: string;
   vote_average: number;
   vote_count: number;
+  runtime: number | 0;
+  tagline: string;
 }
 
 export interface Element {

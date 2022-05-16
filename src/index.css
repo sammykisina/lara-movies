@@ -16,7 +16,7 @@
 
 @layer components {
   .sidebar {
-    @apply w-[calc(68px+156px)] fixed top-0 -left-[100%]  h-full bg-[#1e293b] transition-all duration-[0.5s]  shadow-md z-50;
+    @apply w-[calc(68px+156px)] fixed top-14 md:top-0  -left-[100%]  h-full bg-[#1e293b] transition-all duration-[0.5s]  shadow-md z-50 rounded-tr-md md:rounded-tr-none;
   }
 
   .show__sidebar {

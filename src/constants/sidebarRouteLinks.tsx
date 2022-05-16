@@ -7,9 +7,7 @@ import {
   RiGroupLine,
   RiSettings3Line,
 } from "react-icons/ri";
-import { FaUsers } from "react-icons/fa";
 import { IoNotifications, IoNotificationsOutline } from "react-icons/io5";
-import { IoIosNotificationsOutline } from "react-icons/io";
 import {
   AiFillClockCircle,
   AiFillStar,

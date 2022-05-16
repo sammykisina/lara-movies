@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import { HiMenuAlt4, HiOutlineViewGrid } from "react-icons/hi";
 import { MdOutlineNotifications } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { sidebarState, widgetState } from "../atoms/modalAtom";
 import { allTopnavRouteLinks } from "../constants/topnavRouteLinks";
-import { useGlobalContext } from "../contexts/AppContext";
 import Icons from "./ui/Icons";
 
 const TopNav = () => {
-  const { setToggleSidebar, setToggleWidget } = useGlobalContext();
+  const [showSidebar, setShowSidebar] = useRecoilState(sidebarState);
+  const [showWidget, setShowWidget] = useRecoilState(widgetState);
+
   const location = useLocation();
 
   // detecting the scrolling effect of a page and style the header
@@ -38,16 +42,27 @@ const TopNav = () => {
       {/* left side */}
       <div className="flex justify-center items-center gap-5">
         <div className="md:hidden">
-          <Icons
-            iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50
-      cursor-pointer"
-            icon={
-              <HiMenuAlt4
-                className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
-              />
-            }
-            purpose={() => setToggleSidebar(true)}
-          />
+          {showSidebar ? (
+            <Icons
+              iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer"
+              icon={
+                <FaTimes
+                  className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
+                />
+              }
+              purpose={() => setShowSidebar(!showSidebar)}
+            />
+          ) : (
+            <Icons
+              iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer"
+              icon={
+                <HiMenuAlt4
+                  className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
+                />
+              }
+              purpose={() => setShowSidebar(!showSidebar)}
+            />
+          )}
         </div>
 
         <div className="flex flex-row gap-3 ">
@@ -84,7 +99,7 @@ const TopNav = () => {
             iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50
       cursor-pointer"
             icon={<HiOutlineViewGrid className="text-[#66b2ff] " />}
-            purpose={() => setToggleWidget(true)}
+            purpose={() => setShowWidget(!showWidget)}
           />
         </div>
       </div>

@@ -6,6 +6,7 @@ import Community from "../pages/Community";
 import Discover from "../pages/Discover";
 import Help from "../pages/Help";
 import Home from "../pages/Home";
+import MovieOrTVDetails from "../pages/MovieOrTVDetails";
 import Notifications from "../pages/Notifications";
 import Recent from "../pages/Recent";
 import Series from "../pages/Series";
@@ -27,6 +28,7 @@ const AppRoutes = () => {
 
       {/* internal routes */}
       <Route path="/series" element={<Series />} />
+      <Route path="/:movieOrTv/:id" element={<MovieOrTVDetails />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   );

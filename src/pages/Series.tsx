@@ -55,7 +55,7 @@ const Series = () => {
 
         {/* movies */}
         {trendingTvs.length === 0 ? (
-          <Loader condition="display" />
+          <Loader condition="display" extraCondition="trending" />
         ) : (
           <MovieTVRow data={trendingTvs} condition="display" />
         )}

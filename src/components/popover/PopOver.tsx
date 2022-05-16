@@ -9,7 +9,7 @@ import Button from "../ui/Button";
 import Icons from "../ui/Icons";
 
 const PopOver = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <div className="max-w-sm">

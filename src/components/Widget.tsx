@@ -1,6 +1,5 @@
 import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import { useGlobalContext } from "../contexts/AppContext";
 import Image from "../assets/images/sammy profile pic.jpg";
 import { BiChevronDown, BiGitPullRequest } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
@@ -16,9 +15,11 @@ import useAuth from "../hooks/useAuth";
 import PopOver from "./popover/PopOver";
 import Search from "./Search";
 import Icons from "./ui/Icons";
+import { useRecoilState } from "recoil";
+import { widgetState } from "../atoms/modalAtom";
 
 const Widget = () => {
-  const { toggleWidget, setToggleWidget } = useGlobalContext();
+  const [showWidget, setShowWidget] = useRecoilState(widgetState);
   const [netflixOriginals, setNetflixOriginals] = useState<MovieTV[]>([]);
 
   const { user } = useAuth();
@@ -41,13 +42,13 @@ const Widget = () => {
   return (
     <section
       className={`p-3 ${
-        toggleWidget ? "show__widget widget" : "widget"
-      } text-[#afa5d9]/40 xl:show__widget mt-[3rem] rounded-l-md`}
+        showWidget ? "show__widget widget" : "widget"
+      } text-[#afa5d9]/40 xl:show__widget mt-[2.5rem] rounded-l-md`}
     >
       <button className="close-btn">
         <FaTimes
           className=" text-[#afa5d9] text-[1rem] cursor-pointer xl:hidden"
-          onClick={() => setToggleWidget(false)}
+          onClick={() => setShowWidget(false)}
         />
       </button>
 
@@ -60,7 +61,7 @@ const Widget = () => {
           <button
             onClick={() => {
               navigate("/login");
-              setToggleWidget(false);
+              setShowWidget(false);
             }}
             className="mt-4 mb-4  w-full py-2 rounded-full text-lg  text-white bg-[#e50914]"
           >

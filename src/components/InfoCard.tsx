@@ -19,9 +19,7 @@ const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
 
   return (
     <div
-      className={`absolute top-0 left-0 p-2 h-full w-full  text-white rounded-md  transition-all duration-[0.5s] ease-out ${
-        condition === "display" ? "bg-[#afa5d9]/30 hover:bg-[#afa5d9]/10 " : ""
-      }`}
+      className={`absolute bottom-0 left-0 p-2 h-[100px] w-full  text-white rounded-md  transition-all duration-[0.5s] ease-out`}
     >
       {condition === "display" ? (
         <div className="flex flex-col justify-between  h-full w-full">
@@ -29,7 +27,9 @@ const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
           <div className="">
             {/* title and date */}
             <div className="flex flex-col">
-              <span className="text-lg">{tvOrMovie?.original_title}</span>
+              <span className="text-lg truncate83 ">
+                {tvOrMovie?.original_title}
+              </span>
               <span className="text-sm">{tvOrMovie?.release_date}</span>
             </div>
 
@@ -48,7 +48,6 @@ const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
                     setShowModal(true);
                   }}
                 />
-
 
                 <Icons
                   iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer w-[30px] h-[30px] flex justify-center items-center"

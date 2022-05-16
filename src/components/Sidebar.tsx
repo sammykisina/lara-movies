@@ -2,19 +2,22 @@ import React from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { sidebarState } from "../atoms/modalAtom";
 import { allSidebarRoutesLinks } from "../constants/sidebarRouteLinks";
-import { useGlobalContext } from "../contexts/AppContext";
 
 const Sidebar = () => {
-  const { toggleSidebar, setToggleSidebar } = useGlobalContext();
+  const [showSidebar, setShowSidebar] = useRecoilState(sidebarState);
+
+  console.log("showSidebar", showSidebar);
 
   const location = useLocation();
 
   return (
     <div
-      className={` ${
-        toggleSidebar ? "show__sidebar sidebar" : "sidebar"
-      } text-white/50 md:show__sidebar pt-14 md:pt-0`}
+      className={`${
+        showSidebar ? "show__sidebar sidebar" : "sidebar"
+      } text-white/50 md:show__sidebar lg:pt-14 md:pt-0`}
     >
       <nav className="nav flex flex-col h-full justify-between">
         <div className="nav__list p-2">
@@ -23,7 +26,7 @@ const Sidebar = () => {
             <button className="close-btn md:hidden">
               <FaTimes
                 className=" text-[#afa5d9] text-[1rem] cursor-pointer"
-                onClick={() => setToggleSidebar(false)}
+                onClick={() => setShowSidebar(false)}
               />
             </button>
           </div>
@@ -46,7 +49,7 @@ const Sidebar = () => {
                       key={routeLinkIndex}
                     >
                       <Link
-                        onClick={() => setToggleSidebar(false)}
+                        onClick={() => setShowSidebar(false)}
                         to={route}
                         className="nav__link grid grid-cols-4 gap-3 items-center"
                       >

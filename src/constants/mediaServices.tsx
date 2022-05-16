@@ -1,6 +1,5 @@
 import { RiNetflixFill } from "react-icons/ri";
 import { SiAppletv, SiHbo, SiHulu, SiPrimevideo } from "react-icons/si";
-import DisneyPlus from "../assets/icons/disney-plus.svg";
 
 export const mediaServices = [
   {

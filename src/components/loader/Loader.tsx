@@ -3,9 +3,10 @@ import PlaceHolder from "./PlaceHolder";
 
 interface props {
   condition: string;
+  extraCondition?: string;
 }
 
-const Loader: React.FC<props> = ({ condition }) => {
+const Loader: React.FC<props> = ({ condition, extraCondition }) => {
   return (
     <div
       className={`${
@@ -29,12 +30,19 @@ const Loader: React.FC<props> = ({ condition }) => {
                   <PlaceHolder extraStyles="h-[15px] min-w-[50px] ml-5 bg-gray-500/30 rounded-lg" />
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <div className="w-[100px]">
+                <div className="flex items-center gap-2  justify-between">
+                  {/* play btn holder */}
+                  <div
+                    className={`${
+                      extraCondition === "trending" ? " inline-block" : "hidden"
+                    }`}
+                  >
                     <PlaceHolder extraStyles="h-[30px] min-w-[50px] ml-5 bg-gray-500/30 rounded-full" />
                   </div>
+
+                  {/* add btn holder */}
                   <div className="w-[100px]">
-                    <PlaceHolder extraStyles="h-[35px] w-[35px] ml-5 bg-gray-500/30 rounded-full" />
+                    <PlaceHolder extraStyles="h-[35px] w-[35px] ml-14 bg-gray-500/30 rounded-full" />
                   </div>
                 </div>
               </div>

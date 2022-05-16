@@ -8,3 +8,8 @@ export const movieOrTvState = atom<MovieTV | DocumentData | null>({
   key: "movieOrTvState",
   default: null,
 });
+
+// sidebar and widget modal
+export const sidebarState = atom({ key: "sidebarState", default: false });
+
+export const widgetState = atom({ key: "widgetState", default: false });
