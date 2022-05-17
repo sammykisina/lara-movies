@@ -9,6 +9,21 @@ export const movieOrTvState = atom<MovieTV | DocumentData | null>({
   default: null,
 });
 
+export const currentLocationPathState = atom<string | "">({
+  key: "currentLocationPathState",
+  default: "",
+});
+
+export const currentMovieTvIdState = atom<number | null>({
+  key: "currentMovieTvIdState",
+  default: null,
+});
+
+export const trailerState = atom<string | null>({
+  key: "trailerState",
+  default: null,
+});
+
 // sidebar and widget modal
 export const sidebarState = atom({ key: "sidebarState", default: false });
 

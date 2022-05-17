@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineFolderAdd } from "react-icons/ai";
 import { BsBookmark, BsHeart, BsStar } from "react-icons/bs";
 import { FiPlay } from "react-icons/fi";
-import { useLocation, useParams } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { trailerState } from "../atoms/modalAtom";
+import { MdChevronRight } from "react-icons/md";
+import { Link, useParams } from "react-router-dom";
 import InformationRow from "../components/InformationRow";
 import MovieTvInteractiveBtns from "../components/MovieTvInteractiveBtns";
 import RateProgress from "../components/RateProgress";
 import Icons from "../components/ui/Icons";
 import { baseURL } from "../constants/movieOrTv";
-import { Cast, Crew, Element, MovieTV } from "../typings";
+import { Cast, Crew, Element, MovieTV, TV } from "../typings";
 import { timeConvert } from "../utils/movieSeriesUtils";
 
-const MovieDetails: React.FC = () => {
+const SeriesDetails = () => {
   // const { movieOrTv, id } = useParams();
-  const [data, setData] = useState<MovieTV | null>(null);
+  const [data, setData] = useState<TV | null>(null);
   const [crew, setCrew] = useState<Crew[] | null>(null);
   const [cast, setCast] = useState<Cast[] | null>(null);
-  const setTrailer = useSetRecoilState(trailerState);
+
+  console.log("series data", data);
 
   const { id } = useParams();
 
@@ -27,7 +27,7 @@ const MovieDetails: React.FC = () => {
 
     const fetchMovieOrTv = async () => {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&append_to_response=videos,images,credits`
+        `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&append_to_response=videos,images,credits`
       ).then((response) => response.json());
 
       setData(data);
@@ -37,7 +37,7 @@ const MovieDetails: React.FC = () => {
           (element: Element) => element.type === "Trailer"
         );
 
-        setTrailer(data.videos?.results[index]?.key);
+        // setTrailer(data.videos?.results[index]?.key);
       }
 
       if (data?.credits?.crew) {
@@ -85,25 +85,44 @@ const MovieDetails: React.FC = () => {
 
           {/* the details */}
           <div className="mt-5 flex flex-col text-shadow-lg">
-            <div>
-              {/* the title */}
-              <span className="text-2xl text-white">
-                {data?.original_title || data?.original_name} (
-                {data?.release_date?.substring(0, 4)})
-              </span>
-
+            <div className="flex gap-4 justify-between">
               <div>
-                <div className=" flex gap-2 items-center">
-                  {/* the release data */}
-                  <span>{data?.release_date}</span>
-                  {/* total time */}
-                  <span className="text-sm">{timeConvert(data!?.runtime)}</span>
+                {/* the title */}
+                <span className="text-2xl text-white">
+                  {data?.original_title || data?.original_name}
+                </span>
+
+                <div>
+                  <div className=" flex gap-2 items-center">
+                    {/* the release data */}
+                    <span>{data?.release_date || data?.first_air_date}</span>
+                    {/* total time */}
+                    <span className="text-sm">
+                      {data!?.episode_run_time} mins
+                    </span>
+                  </div>
+                  {/* genre */}
+                  <div className="flex  truncate gap-2 text-sm text-shadow-xl">
+                    {data?.genres.map((genre, genreIndex) => (
+                      <span key={genreIndex}>{genre.name}</span>
+                    ))}
+                  </div>
                 </div>
-                {/* genre */}
-                <div className="flex  truncate gap-2 text-sm text-shadow-xl">
-                  {data?.genres.map((genre, genreIndex) => (
-                    <span key={genreIndex}>{genre.name}</span>
-                  ))}
+              </div>
+
+              {/* seasons info */}
+              <div className=" w-[100px]">
+                <span className="text-sm text-gray-900">Seasons</span>
+
+                <div className="flex gap-2 text-sm items-center">
+                  <span>{data?.seasons.length}</span>
+                  <Link
+                    to=""
+                    className="text-white/70 flex items-center gap-1 "
+                  >
+                    <span>see all</span>
+                    <MdChevronRight className="text-lg" />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -127,7 +146,7 @@ const MovieDetails: React.FC = () => {
                   <div></div>
                 ) : (
                   <div className="grid grid-cols-3 md:grid-cols-3 gap-y-4">
-                    {crew!.slice(0, 5).map((crew: Crew, crewIndex: number) => (
+                    {crew!.slice(0, 3).map((crew: Crew, crewIndex: number) => (
                       <div className="flex flex-col">
                         <span className=" text-gray-900 text-lg hover:underline cursor-pointer">
                           {crew?.name}
@@ -153,4 +172,4 @@ const MovieDetails: React.FC = () => {
   );
 };
 
-export default MovieDetails;
+export default SeriesDetails;

@@ -9,6 +9,7 @@ import MovieDetails from "../pages/MovieDetails";
 import Notifications from "../pages/Notifications";
 import Recent from "../pages/Recent";
 import Series from "../pages/Series";
+import SeriesDetails from "../pages/SeriesDetails";
 import Settings from "../pages/Settings";
 import TopRated from "../pages/TopRated";
 
@@ -27,6 +28,7 @@ const AppRoutes = () => {
       {/* internal routes */}
       <Route path="/series" element={<Series />} />
       <Route path="/movie/:id" element={<MovieDetails />} />
+      <Route path="/tv/:id" element={<SeriesDetails />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   );

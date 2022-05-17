@@ -15,8 +15,7 @@ const SingleMovieOrTv: React.FC<props> = ({
   condition_two,
 }) => {
   const location = useLocation();
-  console.log("path", location?.pathname);
-
+  
   return (
     // <Link to={`/movie/${TvOrMovie.id}`}>
     <div

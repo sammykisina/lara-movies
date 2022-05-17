@@ -15,7 +15,7 @@ const Home = () => {
   const [topRated, setTopRated] = useState<MovieTV[]>([]);
   const [popularMovies, setPopularMovies] = useState<MovieTV[]>([]);
 
-  console.log("top rated movies", topRated);
+  console.log("popularMovies", popularMovies);
 
   // useEffect to fetch api data when the component loads
   const getData = async () => {

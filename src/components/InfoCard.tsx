@@ -1,8 +1,13 @@
 import React from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiPlay } from "react-icons/fi";
-import { useRecoilState } from "recoil";
-import { modalState, movieOrTvState } from "../atoms/modalAtom";
+import { useLocation } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+  currentLocationPathState,
+  currentMovieTvIdState,
+  modalState,
+} from "../atoms/modalAtom";
 import { MovieTV } from "../typings";
 import Button from "./ui/Button";
 import Icons from "./ui/Icons";
@@ -14,8 +19,11 @@ interface props {
 }
 
 const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
-  const [showModal, setShowModal] = useRecoilState(modalState);
-  const [movieOrTv, setMovieOrTv] = useRecoilState(movieOrTvState);
+  const setShowModal = useSetRecoilState(modalState);
+  const setCurrentMovieTvId = useSetRecoilState(currentMovieTvIdState);
+  const setCurrentLocationPath = useSetRecoilState(currentLocationPathState);
+
+  const location = useLocation();
 
   return (
     <div
@@ -44,8 +52,11 @@ const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
                   }`}
                   title="Watch now"
                   purpose={() => {
-                    setMovieOrTv(tvOrMovie);
+                    setCurrentMovieTvId(tvOrMovie?.id);
                     setShowModal(true);
+                    setCurrentLocationPath(
+                      location?.pathname === "/" ? "movie" : "tv"
+                    );
                   }}
                 />
 
