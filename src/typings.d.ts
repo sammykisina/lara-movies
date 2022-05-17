@@ -23,6 +23,20 @@ export interface MovieTV {
   vote_count: number;
   runtime: number | 0;
   tagline: string;
+  credits: [];
+}
+
+export interface Crew {
+  credit_id: number;
+  job: string;
+  name: string;
+}
+
+export interface Cast {
+  credit_id: string;
+  character: string;
+  name: string;
+  profile_path: string;
 }
 
 export interface Element {

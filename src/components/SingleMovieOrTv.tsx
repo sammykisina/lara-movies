@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { MovieTV } from "../typings";
 import InfoCard from "./InfoCard";
 
@@ -14,6 +14,9 @@ const SingleMovieOrTv: React.FC<props> = ({
   condition,
   condition_two,
 }) => {
+  const location = useLocation();
+  console.log("path", location?.pathname);
+
   return (
     // <Link to={`/movie/${TvOrMovie.id}`}>
     <div
@@ -24,9 +27,7 @@ const SingleMovieOrTv: React.FC<props> = ({
       } cursor-pointer  transition duration-200 ease-out`}
     >
       <Link
-        to={`/${TvOrMovie?.media_type === "movie" ? "movie" : "tv"}/${
-          TvOrMovie.id
-        }`}
+        to={`/${location?.pathname === "/" ? "movie" : "tv"}/${TvOrMovie.id}`}
         className={`relative flex ${
           condition === "display"
             ? "h-[200px]  min-w-[300px]"

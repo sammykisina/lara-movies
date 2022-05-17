@@ -28,12 +28,7 @@ export const allSidebarRoutesLinks = [
         iconActive: <HiHome className="sidebar__icon" />,
         iconInactive: <HiOutlineHome className="sidebar__icon" />,
       },
-      {
-        displayName: "Discover",
-        route: "/discover",
-        iconActive: <RiCompassFill className="sidebar__icon" />,
-        iconInactive: <FiCompass />,
-      },
+
       {
         displayName: "Community",
         route: "/community",

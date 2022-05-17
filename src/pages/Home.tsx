@@ -15,19 +15,17 @@ const Home = () => {
   const [topRated, setTopRated] = useState<MovieTV[]>([]);
   const [popularMovies, setPopularMovies] = useState<MovieTV[]>([]);
 
+  console.log("top rated movies", topRated);
+
   // useEffect to fetch api data when the component loads
   const getData = async () => {
-    const [
-      trendingMovies,
-      netflixOriginals,
-      topRated,
-      popularMovies,
-    ] = await Promise.all([
-      fetch(requests.fetchTreadingMovies).then((res) => res.json()),
-      fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
-      fetch(requests.fetchTopRatedMovies).then((res) => res.json()),
-      fetch(requests.fetchPopularMovies).then((res) => res.json()),
-    ]);
+    const [trendingMovies, netflixOriginals, topRated, popularMovies] =
+      await Promise.all([
+        fetch(requests.fetchTreadingMovies).then((res) => res.json()),
+        fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
+        fetch(requests.fetchTopRatedMovies).then((res) => res.json()),
+        fetch(requests.fetchPopularMovies).then((res) => res.json()),
+      ]);
 
     setTrendingMovies(trendingMovies?.results);
     setNetflixOriginals(netflixOriginals?.results);

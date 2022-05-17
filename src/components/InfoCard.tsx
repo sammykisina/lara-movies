@@ -27,7 +27,7 @@ const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
           <div className="">
             {/* title and date */}
             <div className="flex flex-col">
-              <span className="text-lg truncate83 ">
+              <span className="text-lg truncate ">
                 {tvOrMovie?.original_title}
               </span>
               <span className="text-sm">{tvOrMovie?.release_date}</span>
