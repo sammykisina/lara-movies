@@ -3,7 +3,7 @@ import PlaceHolder from "./PlaceHolder";
 const MovieOrTvDetailsLoader = () => {
   return (
     <div>
-      <div className="relative h-[650px] md:h-[890px] lg:h-[600px]">
+      <div className="relative h-[700px] md:h-[890px] lg:h-[600px]">
         {/* bg image placeholder */}
         <PlaceHolder extraStyles="h-full w-full rounded-tr-2xl rounded-bl-2xl" />
 
@@ -24,18 +24,18 @@ const MovieOrTvDetailsLoader = () => {
           <div className="mt-10 flex flex-col w-full  h-[400px]">
             <div>
               {/* title placeholder */}
-              <PlaceHolder extraStyles="ring-1 h-[10px] rounded-full md:w-[200px]" />
+              <PlaceHolder extraStyles="ring-1 h-[10px] rounded-full w-[200px]" />
 
               {/* the release data and genre placeholder */}
               <div className="mt-5">
                 <div className=" flex gap-2 items-center">
                   {/* the release data */}
-                  <PlaceHolder extraStyles="ring-1 h-[10px] rounded-full" />
+                  <PlaceHolder extraStyles="ring-1 h-[10px] w-[200px] rounded-full" />
                   {/* total time */}
-                  <PlaceHolder extraStyles="ring-1 h-[10px] rounded-full" />
+                  <PlaceHolder extraStyles="ring-1 h-[10px] w-[200px] rounded-full" />
                 </div>
                 {/* genre */}
-                <div className="grid grid-cols-3 mt-4 gap-2">
+                <div className="grid grid-cols-3 mt-4 gap-2 w-[200px]">
                   {Array.from(Array(Math.ceil(3)).keys()).map((index) => (
                     <div key={index}>
                       <PlaceHolder extraStyles="ring-1 h-[10px] rounded" />
@@ -50,24 +50,24 @@ const MovieOrTvDetailsLoader = () => {
               <PlaceHolder extraStyles="h-full rounded-md w-full ring-1 " />
 
               <div className=" absolute top-0 w-full h-full flex justify-center items-center gap-3">
-                {Array.from(Array(Math.ceil(4)).keys()).map((index) => (
+                {Array.from(Array(Math.ceil(5)).keys()).map((index) => (
                   <PlaceHolder
                     key={index}
-                    extraStyles="h-[30px] w-[30px] rounded-full w-full ring-1 "
+                    extraStyles="h-[30px] w-[30px] rounded-md w-full ring-1 "
                   />
                 ))}
               </div>
             </div>
 
             {/* tag */}
-            <PlaceHolder extraStyles="rounded-full w-full h-[15px] ring-1 mt-[30px]" />
+            <PlaceHolder extraStyles="rounded-full w-full h-[15px] ring-1 mt-[30px] w-[250px]" />
 
             {/* overview placeholders */}
             <div className="mt-4">
               {/* overview title */}
               <PlaceHolder extraStyles="rounded-full w-[150px] h-[15px] ring-1 " />
               {/* the overview */}
-              <PlaceHolder extraStyles="rounded w-full h-[50px] ring-1 mt-[10px]" />
+              <PlaceHolder extraStyles="rounded w-full h-[100px] ring-1 mt-[10px]" />
             </div>
 
             {/* the crew placeholders */}
