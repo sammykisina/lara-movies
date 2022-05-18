@@ -46,9 +46,9 @@
   .background {
     background: linear-gradient(
       to right,
-      #6b7280 0%,
-      #6b7280 50%,
-      #6b7280 100%
+      rgb(19 47 76 / 0.5) 0%,
+
+      rgb(19 47 76 / 0.2) 100%
     );
     animation: loaderSwipeAnim 1s cubic-bezier(0, 0, 0.2, 1) infinite;
   }

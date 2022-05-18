@@ -24,8 +24,6 @@ const Modal = () => {
   const [trailer, setTrailer] = useState<string>("");
   const [globalTrailer, setGlobalTrailer] = useRecoilState(trailerState);
   const [muted, setMuted] = useState<boolean>(true);
-  console.log("globalTrailer", globalTrailer);
-  console.log("trailer", trailer);
 
   useEffect(() => {
     if (!currentMovieTvId) return;

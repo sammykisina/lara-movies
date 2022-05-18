@@ -14,9 +14,9 @@ export const currentLocationPathState = atom<string | "">({
   default: "",
 });
 
-export const currentMovieTvIdState = atom<number | null>({
+export const currentMovieTvIdState = atom<number | undefined>({
   key: "currentMovieTvIdState",
-  default: null,
+  default: undefined,
 });
 
 export const trailerState = atom<string | null>({

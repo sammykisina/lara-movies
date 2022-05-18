@@ -41,7 +41,10 @@ const InformationRow: React.FC<props> = ({ data }) => {
         className="flex overflow-x-scroll scrollbar-hide gap-3 py-2 "
       >
         {data?.map((singleDataElement, singleDataElementIndex) => (
-          <SingleCast singleCast={singleDataElement} />
+          <SingleCast
+            key={singleDataElementIndex}
+            singleCast={singleDataElement}
+          />
         ))}
       </div>
 

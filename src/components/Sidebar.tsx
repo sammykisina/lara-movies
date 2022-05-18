@@ -9,8 +9,6 @@ import { allSidebarRoutesLinks } from "../constants/sidebarRouteLinks";
 const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useRecoilState(sidebarState);
 
-  console.log("showSidebar", showSidebar);
-
   const location = useLocation();
 
   return (
