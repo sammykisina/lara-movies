@@ -47,10 +47,8 @@ const MovieOrTvDetailsLoader = () => {
 
             {/* the btns */}
             <div className="mt-10 h-[50px] relative">
-              <PlaceHolder extraStyles="h-full rounded-md w-full ring-1 " />
-
-              <div className=" absolute top-0 w-full h-full flex justify-center items-center gap-3">
-                {Array.from(Array(Math.ceil(5)).keys()).map((index) => (
+              <div className=" absolute top-0 w-fit h-full flex justify-center items-center gap-3">
+                {Array.from(Array(Math.ceil(2)).keys()).map((index) => (
                   <PlaceHolder
                     key={index}
                     extraStyles="h-[30px] w-[30px] rounded-md w-full ring-1 "

@@ -5,11 +5,14 @@ import { Link, useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { sidebarState } from "../atoms/modalAtom";
 import { allSidebarRoutesLinks } from "../constants/sidebarRouteLinks";
+import useAuth from "../hooks/useAuth";
+import Button from "./ui/Button";
 
 const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useRecoilState(sidebarState);
 
   const location = useLocation();
+  const { logout, user } = useAuth();
 
   return (
     <div
@@ -21,12 +24,13 @@ const Sidebar = () => {
         <div className="nav__list p-2">
           <div className="flex justify-between">
             <span></span>
-            <button className="close-btn md:hidden">
-              <FaTimes
-                className=" text-[#afa5d9] text-[1rem] cursor-pointer"
-                onClick={() => setShowSidebar(false)}
-              />
-            </button>
+            <Button
+              btnStyles="close-btn md:hidden"
+              icon={
+                <FaTimes className=" text-[#afa5d9] text-[1rem] cursor-pointer" />
+              }
+              purpose={() => setShowSidebar(false)}
+            />
           </div>
           {allSidebarRoutesLinks.map((linkGroup, linkGroupIndex) => {
             const { title, routeLinks } = linkGroup;
@@ -86,13 +90,15 @@ const Sidebar = () => {
           })}
         </div>
 
-        {/* logout link */}
-        <Link to="/" className="mb-20 mx-6">
-          <div className="flex items-center gap-3 px-2">
-            <AiOutlineLogout />
-            <span>Log Out</span>
-          </div>
-        </Link>
+        {/* logout btn */}
+        {user && (
+          <Button
+            title="Log out"
+            btnStyles="mb-20 mx-6 flex items-center gap-3 px-2 bg-[#132f4c]/50 py-2 rounded-full justify-center"
+            icon={<AiOutlineLogout className="w-5 h-5" />}
+            purpose={() => logout()}
+          />
+        )}
       </nav>
     </div>
   );

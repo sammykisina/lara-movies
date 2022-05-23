@@ -16,6 +16,11 @@ import { FaVolumeOff, FaVolumeUp } from "react-icons/fa";
 import Icons from "../ui/Icons";
 import { BsPlayFill } from "react-icons/bs";
 import { AiFillHeart } from "react-icons/ai";
+import {
+  MdOutlinePlayArrow,
+  MdOutlineVolumeOff,
+  MdOutlineVolumeUp,
+} from "react-icons/md";
 
 const Modal = () => {
   const [showModal, setShowModal] = useRecoilState(modalState);
@@ -67,49 +72,44 @@ const Modal = () => {
         />
 
         <div className=" relative pt-[56.25%] md:pt-[50%]">
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${
-              globalTrailer !== null ? globalTrailer : trailer
-            }`}
-            width="100%"
-            height="100%"
-            style={{
-              position: "absolute",
-              top: "0",
-              left: "0",
-            }}
-            playing
-            muted={muted}
-          />
+          {globalTrailer !== null || trailer === null ? (
+            <div></div>
+          ) : (
+            <ReactPlayer
+              url={`https://www.youtube.com/watch?v=${
+                globalTrailer !== null ? globalTrailer : trailer
+              }`}
+              width="100%"
+              height="100%"
+              style={{
+                position: "absolute",
+                top: "0",
+                left: "0",
+                border: "3px solid #ef4b4b",
+                borderTopLeftRadius: "100px",
+                borderBottomRightRadius: "100px",
+              }}
+              playing
+              muted={muted}
+            />
+          )}
 
           <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
             <div className="flex space-x-2">
               <Icons
-                iconStyles="group p-1 rounded-lg  hover:bg-gray-900 cursor-pointer"
-                icon={<BsPlayFill className="w-8 h-8" />}
-                purpose={handleClose}
-              />
-
-              <Icons
-                iconStyles="group p-1 rounded-lg hover:bg-gray-900 cursor-pointer"
-                icon={<HiPlus className=" w-8 h-8" />}
-                purpose={handleClose}
-              />
-
-              <Icons
-                iconStyles="group p-1 rounded-lg  hover:bg-gray-900 cursor-pointer"
-                icon={<AiFillHeart className="w-8 h-8" />}
+                iconStyles="icon group"
+                icon={<MdOutlinePlayArrow className="text-[#66b2ff] w-7 h-7" />}
                 purpose={handleClose}
               />
             </div>
 
             <Icons
-              iconStyles="group p-1 rounded-lg  hover:bg-gray-900 cursor-pointer"
+              iconStyles="icon group"
               icon={
                 muted ? (
-                  <FaVolumeOff className="h-8 w-8" />
+                  <MdOutlineVolumeOff className="h-8 w-8" />
                 ) : (
-                  <FaVolumeUp className="h-8 w-8" />
+                  <MdOutlineVolumeUp className="h-8 w-8" />
                 )
               }
               purpose={() => setMuted(!muted)}

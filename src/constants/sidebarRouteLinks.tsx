@@ -6,6 +6,8 @@ import {
   RiGroupFill,
   RiGroupLine,
   RiSettings3Line,
+  RiSlideshow3Fill,
+  RiSlideshow3Line,
 } from "react-icons/ri";
 import { IoNotifications, IoNotificationsOutline } from "react-icons/io5";
 import {
@@ -17,24 +19,26 @@ import {
 import { BsBookmarkDash, BsFillBookmarkDashFill } from "react-icons/bs";
 import { RiSettings3Fill } from "react-icons/ri";
 import { FiCompass } from "react-icons/fi";
+import { MdLocalMovies, MdOutlineLocalMovies } from "react-icons/md";
 
 export const allSidebarRoutesLinks = [
   {
     title: "Menu",
     routeLinks: [
       {
-        displayName: "Home",
+        displayName: "Movies",
         route: "/",
-        iconActive: <HiHome className="sidebar__icon" />,
-        iconInactive: <HiOutlineHome className="sidebar__icon" />,
+        iconActive: <MdLocalMovies className="sidebar__icon" />,
+        iconInactive: <MdOutlineLocalMovies className="sidebar__icon" />,
       },
 
       {
-        displayName: "Community",
-        route: "/community",
-        iconActive: <RiGroupFill className="sidebar__icon" />,
-        iconInactive: <RiGroupLine className="sidebar__icon" />,
+        displayName: "Tv",
+        route: "/tv",
+        iconActive: <RiSlideshow3Fill className="sidebar__icon" />,
+        iconInactive: <RiSlideshow3Line className="sidebar__icon" />,
       },
+
       {
         displayName: "Notifications",
         route: "/notifications",
@@ -53,8 +57,8 @@ export const allSidebarRoutesLinks = [
         iconInactive: <AiOutlineClockCircle className="sidebar__icon" />,
       },
       {
-        displayName: "Bookmarked",
-        route: "/bookmarked",
+        displayName: "My List",
+        route: "/my-list",
         iconActive: <BsFillBookmarkDashFill className="sidebar__icon" />,
         iconInactive: <BsBookmarkDash className="sidebar__icon" />,
       },

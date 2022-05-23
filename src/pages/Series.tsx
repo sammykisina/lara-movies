@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
-import Loader from "../components/loader/Loader";
+import MovieTvLoader from "../components/loader/MovieTvLoader";
 import MovieTVRow from "../components/MovieTVRow";
 import requests from "../constants/requests";
-import { MovieTV } from "../typings";
+import useAuth from "../hooks/useAuth";
+import useList from "../hooks/useList";
+import { MovieTV, TV } from "../typings";
 
 const Series = () => {
   const [trendingTvs, setTrendingTvs] = useState<MovieTV[]>([]);
@@ -15,6 +17,11 @@ const Series = () => {
 
   const [topRatedTvs, setTopRatedTvs] = useState<MovieTV[]>([]);
   const [popularTvs, setPopularTvs] = useState<MovieTV[]>([]);
+  const { user } = useAuth();
+
+  const list = useList(user?.uid);
+
+  let tvsInList = list.filter((singleTv: TV) => singleTv.media_type === "tv");
 
   // useEffect to fetch api data when the component loads
   const getData = async () => {
@@ -32,10 +39,10 @@ const Series = () => {
     setPopularTvs(popularTvs?.results);
   };
   useEffect(() => {
-    setTimeout(() => {
-      getData();
-    }, 1000);
+    getData();
   }, []);
+
+  console.log("login topRatedTvs ", topRatedTvs);
 
   return (
     <section className="z-10">
@@ -55,19 +62,30 @@ const Series = () => {
 
         {/* movies */}
         {trendingTvs.length === 0 ? (
-          <Loader condition="display" extraCondition="trending" />
+          <MovieTvLoader condition="display" extraCondition="trending" />
         ) : (
           <MovieTVRow data={trendingTvs} condition="display" />
         )}
       </div>
 
-      {/* continue watching */}
+      {/* My List */}
       <div className=" mt-10">
         {/* title */}
         <div className="flex justify-between">
-          <span className="text-white/70 text-lg font-semibold">
-            Continue watching
-          </span>
+          <div className="text-white/70 text-lg font-semibold flex flex-col">
+            <span>
+              My List <span className=" text-xs">tv</span>
+            </span>
+            {tvsInList.length === 0 ? (
+              <span className="text-sm -mt-1">
+                Add Tv shows To Your List and watch them later
+              </span>
+            ) : (
+              <span className="text-sm -mt-1">
+                You currently have {tvsInList?.length} items
+              </span>
+            )}
+          </div>
 
           <Link to="" className="text-white/70 flex items-center gap-2">
             <span>see all</span>
@@ -76,10 +94,10 @@ const Series = () => {
         </div>
 
         {/* movies */}
-        {netflixOriginals.length === 0 ? (
-          <Loader condition="watching" />
+        {tvsInList.length === 0 || !user ? (
+          <MovieTvLoader condition="watching" />
         ) : (
-          <MovieTVRow data={netflixOriginals} condition="watching" />
+          <MovieTVRow data={tvsInList} condition="watching" />
         )}
       </div>
 
@@ -99,7 +117,7 @@ const Series = () => {
 
         {/* movies */}
         {topRatedTvs.length === 0 ? (
-          <Loader condition="display" />
+          <MovieTvLoader condition="display" />
         ) : (
           <MovieTVRow
             data={topRatedTvs}
@@ -125,7 +143,7 @@ const Series = () => {
 
         {/* movies */}
         {popularTvs.length === 0 ? (
-          <Loader condition="display" />
+          <MovieTvLoader condition="display" />
         ) : (
           <MovieTVRow
             data={popularTvs}

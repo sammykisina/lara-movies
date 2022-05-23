@@ -15,22 +15,18 @@ const SingleMovieOrTv: React.FC<props> = ({
   condition_two,
 }) => {
   const location = useLocation();
-  
+
   return (
     // <Link to={`/movie/${TvOrMovie.id}`}>
     <div
-      className={`relative flex ${
-        condition === "display"
-          ? "h-[200px]  min-w-[300px]"
-          : "min-w-[300px] h-[150px] "
+      className={`relative flex min-w-[300px] ${
+        condition === "display" ? "h-[200px]" : "h-[150px] "
       } cursor-pointer  transition duration-200 ease-out`}
     >
       <Link
         to={`/${location?.pathname === "/" ? "movie" : "tv"}/${TvOrMovie.id}`}
-        className={`relative flex ${
-          condition === "display"
-            ? "h-[200px]  min-w-[300px]"
-            : "min-w-[300px] h-[150px] "
+        className={`relative w-full flex ${
+          condition === "display" ? "h-full " : "h-full"
         } cursor-pointer  transition duration-200 ease-out`}
       >
         <img
@@ -38,7 +34,7 @@ const SingleMovieOrTv: React.FC<props> = ({
             TvOrMovie.backdrop_path || TvOrMovie.poster_path
           }`}
           alt=""
-          className="rounded-lg object-cover"
+          className="object-cover rounded-tl-3xl rounded-br-3xl w-full"
         />
       </Link>
 

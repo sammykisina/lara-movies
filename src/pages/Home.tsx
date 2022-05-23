@@ -5,7 +5,9 @@ import { MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import MovieTVRow from "../components/MovieTVRow";
-import Loader from "../components/loader/Loader";
+import Loader from "../components/loader/MovieTvLoader";
+import useList from "../hooks/useList";
+import useAuth from "../hooks/useAuth";
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState<MovieTV[]>([]);
@@ -15,6 +17,11 @@ const Home = () => {
   const [topRated, setTopRated] = useState<MovieTV[]>([]);
   const [popularMovies, setPopularMovies] = useState<MovieTV[]>([]);
 
+  const { user } = useAuth();
+  const list = useList(user?.uid);
+  let moviesInList = list.filter(
+    (singleMovie: MovieTV) => singleMovie.media_type === "movie"
+  );
 
   // useEffect to fetch api data when the component loads
   const getData = async () => {
@@ -32,9 +39,7 @@ const Home = () => {
     setPopularMovies(popularMovies?.results);
   };
   useEffect(() => {
-    setTimeout(() => {
-      getData();
-    }, 1000);
+    getData();
   }, []);
 
   return (
@@ -61,13 +66,24 @@ const Home = () => {
         )}
       </div>
 
-      {/* continue watching */}
+      {/* My List */}
       <div className=" mt-10">
         {/* title */}
         <div className="flex justify-between">
-          <span className="text-white/70 text-lg font-semibold">
-            Continue watching
-          </span>
+          <div className="text-white/70 text-lg font-semibold flex flex-col">
+            <span>
+              My List <span className=" text-xs">movies</span>
+            </span>
+            {moviesInList.length === 0 ? (
+              <span className="text-sm -mt-1">
+                Add Movies and watch them later
+              </span>
+            ) : (
+              <span className="text-sm -mt-1">
+                You currently have {moviesInList?.length} items
+              </span>
+            )}
+          </div>
 
           <Link to="" className="text-white/70 flex items-center gap-2">
             <span>see all</span>
@@ -76,10 +92,10 @@ const Home = () => {
         </div>
 
         {/* movies */}
-        {netflixOriginals.length === 0 ? (
+        {moviesInList.length === 0 || !user ? (
           <Loader condition="watching" />
         ) : (
-          <MovieTVRow data={netflixOriginals} condition="watching" />
+          <MovieTVRow data={moviesInList} condition="watching" />
         )}
       </div>
 
@@ -117,7 +133,10 @@ const Home = () => {
             What's Popular
           </span>
 
-          <Link to="" className="text-white/70 flex items-center gap-2">
+          <Link
+            to="/movies/popular"
+            className="text-white/70 flex items-center gap-2"
+          >
             <span>see all</span>
             <MdChevronRight className="text-lg" />
           </Link>

@@ -70,4 +70,8 @@
   .modalBtn {
     @apply flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/50 transition hover:border-white hover:bg-white/10;
   }
+
+  .icon {
+    @apply p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer w-[30px] h-[30px] flex justify-center items-center transition-5;
+  }
 }

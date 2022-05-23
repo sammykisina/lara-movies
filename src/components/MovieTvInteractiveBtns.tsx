@@ -17,18 +17,9 @@ const MovieTvInteractiveBtns: React.FC<props> = ({
   const setCurrentMovieTvId = useSetRecoilState(currentMovieTvIdState);
 
   return (
-    <div className="flex gap-3 my-3 rounded-md bg-gray-900 py-2 px-3 items-center justify-center ">
+    <div className="flex gap-3 my-3 rounded-md bg-gray-900 py-2 px-3 items-center justify-center w-fit ">
       <Icons
-        iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer"
-        icon={
-          <AiOutlineFolderAdd
-            className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
-          />
-        }
-        // purpose={() => setShowSidebar(!showSidebar)}
-      />
-      <Icons
-        iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer"
+        iconStyles="group icon"
         icon={
           <BsBookmark
             className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
@@ -36,28 +27,23 @@ const MovieTvInteractiveBtns: React.FC<props> = ({
         }
         // purpose={() => setShowSidebar(!showSidebar)}
       />
-      <Icons
-        iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer"
-        icon={
-          <BsHeart
-            className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
-          />
-        }
-        // purpose={() => setShowSidebar(!showSidebar)}
-      />
+
+      {/* {addedToList ? (
+        <Icons
+          iconStyles="icon group"
+          icon={<MdOutlineCheck className="text-[#66b2ff] w-7 h-7" />}
+          purpose={handleList}
+        />
+      ) : (
+        <Icons
+          iconStyles="icon group"
+          icon={<AiOutlinePlus className="text-[#66b2ff] w-7 h-7" />}
+          purpose={handleList}
+        />
+      )} */}
 
       <Icons
-        iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer"
-        icon={
-          <BsStar
-            className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
-          />
-        }
-        // purpose={() => setShowSidebar(!showSidebar)}
-      />
-
-      <Icons
-        iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer"
+        iconStyles="group icon"
         icon={
           <FiPlay
             className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}

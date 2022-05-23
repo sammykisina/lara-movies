@@ -6,7 +6,7 @@ interface props {
   extraCondition?: string;
 }
 
-const Loader: React.FC<props> = ({ condition, extraCondition }) => {
+const MovieTvLoader: React.FC<props> = ({ condition, extraCondition }) => {
   return (
     <div
       className={`${
@@ -18,7 +18,7 @@ const Loader: React.FC<props> = ({ condition, extraCondition }) => {
           <PlaceHolder
             extraStyles={` ${
               condition === "display" ? "h-[200px]" : "h-[150px]"
-            }   min-w-[300px] rounded-lg`}
+            }   min-w-[300px] rounded-tl-3xl rounded-br-3xl`}
           />
 
           {condition === "display" ? (
@@ -48,13 +48,15 @@ const Loader: React.FC<props> = ({ condition, extraCondition }) => {
               </div>
             </div>
           ) : (
-            <div className="">
-              <div className=" absolute top-[50px] left-[100px]">
-                <PlaceHolder extraStyles="h-[60px] w-[60px] ml-5 bg-gray-500/30 rounded-full" />
+            <div>
+              <div className="absolute w-[200px] bottom-1/3">
+                <PlaceHolder extraStyles="h-[15px] min-w-[50px] ml-5 bg-gray-500/30 rounded-lg" />
               </div>
 
-              <div className="absolute w-[200px] top-[120px]">
-                <PlaceHolder extraStyles="h-[15px] min-w-[50px] ml-5 bg-gray-500/30 rounded-lg" />
+              <div className="absolute bottom-0 mt-2 flex gap-3 mb-1 pl-2">
+                <PlaceHolder extraStyles="p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 w-[30px] h-[30px] flex  transition-5" />
+
+                <PlaceHolder extraStyles="p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 w-[30px] h-[30px] flex  transition-5" />
               </div>
             </div>
           )}
@@ -64,4 +66,4 @@ const Loader: React.FC<props> = ({ condition, extraCondition }) => {
   );
 };
 
-export default Loader;
+export default MovieTvLoader;

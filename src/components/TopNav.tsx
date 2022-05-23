@@ -44,7 +44,7 @@ const TopNav = () => {
         <div className="md:hidden">
           {showSidebar ? (
             <Icons
-              iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer"
+              iconStyles="icon group"
               icon={
                 <FaTimes
                   className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
@@ -54,7 +54,7 @@ const TopNav = () => {
             />
           ) : (
             <Icons
-              iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer"
+              iconStyles="icon group"
               icon={
                 <HiMenuAlt4
                   className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
@@ -88,16 +88,14 @@ const TopNav = () => {
       {/* right side */}
       <div className="flex  items-center gap-2 text-xl">
         <Icons
-          iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50
-      cursor-pointer"
+          iconStyles="icon group"
           icon={<MdOutlineNotifications className="text-[#66b2ff]" />}
           purpose={() => openNotifications()}
         />
 
         <div className="xl:hidden">
           <Icons
-            iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50
-      cursor-pointer"
+            iconStyles="icon group"
             icon={<HiOutlineViewGrid className="text-[#66b2ff] " />}
             purpose={() => setShowWidget(!showWidget)}
           />

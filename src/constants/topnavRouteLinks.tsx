@@ -5,6 +5,6 @@ export const allTopnavRouteLinks = [
   },
   {
     displayName: "Series",
-    route: "/series",
+    route: "/tv",
   },
 ];

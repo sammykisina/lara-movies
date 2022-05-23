@@ -7,9 +7,15 @@ import useAuth from "../../hooks/useAuth";
 import { CgProfile } from "react-icons/cg";
 import Button from "../ui/Button";
 import Icons from "../ui/Icons";
+import { BsBookmarkDash } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { widgetState } from "../../atoms/modalAtom";
 
 const PopOver = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+
+  const setShowWidget = useSetRecoilState(widgetState);
 
   return (
     <div className="max-w-sm">
@@ -20,8 +26,7 @@ const PopOver = () => {
               <div className="flex justify-between gap-3 items-center mt-4 mb-4 w-full  group ">
                 <div className="flex items-center gap-3">
                   <Icons
-                    iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50
-      cursor-pointer"
+                    iconStyles="group p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer"
                     icon={<BiUser className="text-[#66b2ff]" />}
                   />
 
@@ -54,17 +59,31 @@ const PopOver = () => {
 
                   <Button
                     icon={<CgProfile className="w-5 h-5 text-[#66b2ff] " />}
-                    title="My Collections"
+                    title="My Profile"
                     btnStyles="popOverBtnStyles"
                   />
 
-                  <Button
+                  {/* <Button
                     icon={
-                      <AiFillFolderAdd className="w-5 h-5 text-[#66b2ff] " />
+                      <BsBookmarkDash className="w-5 h-5 text-[#66b2ff] " />
                     }
-                    title="My Collections"
+                    title="My List"
                     btnStyles="popOverBtnStyles"
-                  />
+                    purpose={() => {
+                      
+                    }}
+                  /> */}
+
+                  <Link
+                    onClick={() => {
+                      setShowWidget(false);
+                    }}
+                    to="/my-list"
+                    className={`popOverBtnStyles w-fit`}
+                  >
+                    <BsBookmarkDash className="w-5 h-5 text-[#66b2ff] " />
+                    <span>My List</span>
+                  </Link>
                 </div>
 
                 <div className="flex  justify-between">
@@ -77,6 +96,7 @@ const PopOver = () => {
                     title="Log out"
                     btnStyles="popOverBtnStyles"
                     additionalBtnStyles="bg-[#132f4c]/50"
+                    purpose={() => logout()}
                   />
                 </div>
               </Popover.Panel>
