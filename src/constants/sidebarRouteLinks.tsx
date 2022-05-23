@@ -1,25 +1,19 @@
-import { HiHome, HiOutlineHome } from "react-icons/hi";
 import {
-  RiCompassFill,
   RiErrorWarningFill,
   RiErrorWarningLine,
-  RiGroupFill,
-  RiGroupLine,
   RiSettings3Line,
   RiSlideshow3Fill,
   RiSlideshow3Line,
 } from "react-icons/ri";
-import { IoNotifications, IoNotificationsOutline } from "react-icons/io5";
 import {
-  AiFillClockCircle,
-  AiFillStar,
-  AiOutlineClockCircle,
-  AiOutlineStar,
-} from "react-icons/ai";
-import { BsBookmarkDash, BsFillBookmarkDashFill } from "react-icons/bs";
+  IoChatbubblesOutline,
+  IoNotifications,
+  IoNotificationsOutline,
+} from "react-icons/io5";
+import { AiFillClockCircle, AiOutlineClockCircle } from "react-icons/ai";
 import { RiSettings3Fill } from "react-icons/ri";
-import { FiCompass } from "react-icons/fi";
 import { MdLocalMovies, MdOutlineLocalMovies } from "react-icons/md";
+import { IoIosChatbubbles } from "react-icons/io";
 
 export const allSidebarRoutesLinks = [
   {
@@ -38,6 +32,12 @@ export const allSidebarRoutesLinks = [
         iconActive: <RiSlideshow3Fill className="sidebar__icon" />,
         iconInactive: <RiSlideshow3Line className="sidebar__icon" />,
       },
+      {
+        displayName: "Community",
+        route: "/community",
+        iconActive: <IoIosChatbubbles className="sidebar__icon" />,
+        iconInactive: <IoChatbubblesOutline className="sidebar__icon" />,
+      },
 
       {
         displayName: "Notifications",
@@ -55,18 +55,6 @@ export const allSidebarRoutesLinks = [
         route: "/recent",
         iconActive: <AiFillClockCircle className="sidebar__icon" />,
         iconInactive: <AiOutlineClockCircle className="sidebar__icon" />,
-      },
-      {
-        displayName: "My List",
-        route: "/my-list",
-        iconActive: <BsFillBookmarkDashFill className="sidebar__icon" />,
-        iconInactive: <BsBookmarkDash className="sidebar__icon" />,
-      },
-      {
-        displayName: "Top rated",
-        route: "/top-rated",
-        iconActive: <AiFillStar className="sidebar__icon" />,
-        iconInactive: <AiOutlineStar className="sidebar__icon" />,
       },
     ],
   },

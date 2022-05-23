@@ -25,8 +25,7 @@ const SingleMovieOrTv: React.FC<props> = ({
     >
       <Link
         to={`/${location?.pathname === "/" ? "movie" : "tv"}/${TvOrMovie.id}`}
-        className={`relative w-full flex ${
-          condition === "display" ? "h-full " : "h-full"
+        className={`relative w-full flex h-full
         } cursor-pointer  transition duration-200 ease-out`}
       >
         <img

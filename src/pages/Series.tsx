@@ -12,9 +12,6 @@ import { MovieTV, TV } from "../typings";
 const Series = () => {
   const [trendingTvs, setTrendingTvs] = useState<MovieTV[]>([]);
 
-  // change to a list checked from the db
-  const [netflixOriginals, setNetflixOriginals] = useState<MovieTV[]>([]);
-
   const [topRatedTvs, setTopRatedTvs] = useState<MovieTV[]>([]);
   const [popularTvs, setPopularTvs] = useState<MovieTV[]>([]);
   const { user } = useAuth();
@@ -25,24 +22,19 @@ const Series = () => {
 
   // useEffect to fetch api data when the component loads
   const getData = async () => {
-    const [trendingTvs, netflixOriginals, topRatedTvs, popularTvs] =
-      await Promise.all([
-        fetch(requests.fetchTopRatedTv).then((res) => res.json()),
-        fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
-        fetch(requests.fetchTopRatedTv).then((res) => res.json()),
-        fetch(requests.fetchPopularTvs).then((res) => res.json()),
-      ]);
+    const [trendingTvs, topRatedTvs, popularTvs] = await Promise.all([
+      fetch(requests.fetchTopRatedTv).then((res) => res.json()),
+      fetch(requests.fetchTopRatedTv).then((res) => res.json()),
+      fetch(requests.fetchPopularTvs).then((res) => res.json()),
+    ]);
 
     setTrendingTvs(trendingTvs?.results);
-    setNetflixOriginals(netflixOriginals?.results);
     setTopRatedTvs(topRatedTvs?.results);
     setPopularTvs(popularTvs?.results);
   };
   useEffect(() => {
     getData();
   }, []);
-
-  console.log("login topRatedTvs ", topRatedTvs);
 
   return (
     <section className="z-10">

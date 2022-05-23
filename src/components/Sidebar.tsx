@@ -52,7 +52,7 @@ const Sidebar = () => {
                     >
                       <Link
                         onClick={() => setShowSidebar(false)}
-                        to={route}
+                        to={route!}
                         className="nav__link grid grid-cols-4 gap-3 items-center"
                       >
                         <div

@@ -11,9 +11,6 @@ import useAuth from "../hooks/useAuth";
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState<MovieTV[]>([]);
-  // change to a list checked from the db
-  const [netflixOriginals, setNetflixOriginals] = useState<MovieTV[]>([]);
-
   const [topRated, setTopRated] = useState<MovieTV[]>([]);
   const [popularMovies, setPopularMovies] = useState<MovieTV[]>([]);
 
@@ -25,16 +22,13 @@ const Home = () => {
 
   // useEffect to fetch api data when the component loads
   const getData = async () => {
-    const [trendingMovies, netflixOriginals, topRated, popularMovies] =
-      await Promise.all([
-        fetch(requests.fetchTreadingMovies).then((res) => res.json()),
-        fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
-        fetch(requests.fetchTopRatedMovies).then((res) => res.json()),
-        fetch(requests.fetchPopularMovies).then((res) => res.json()),
-      ]);
+    const [trendingMovies, topRated, popularMovies] = await Promise.all([
+      fetch(requests.fetchTreadingMovies).then((res) => res.json()),
+      fetch(requests.fetchTopRatedMovies).then((res) => res.json()),
+      fetch(requests.fetchPopularMovies).then((res) => res.json()),
+    ]);
 
     setTrendingMovies(trendingMovies?.results);
-    setNetflixOriginals(netflixOriginals?.results);
     setTopRated(topRated?.results);
     setPopularMovies(popularMovies?.results);
   };
@@ -52,9 +46,12 @@ const Home = () => {
             Trending movies
           </span>
 
-          <Link to="" className="text-white/70 flex items-center gap-2">
+          <Link
+            to="/movies/trending"
+            className="text-white/70 flex items-center gap-2 group"
+          >
             <span>see all</span>
-            <MdChevronRight className="text-lg" />
+            <MdChevronRight className="text-lg group-hover:scale-150 transition-5" />
           </Link>
         </div>
 
@@ -84,11 +81,6 @@ const Home = () => {
               </span>
             )}
           </div>
-
-          <Link to="" className="text-white/70 flex items-center gap-2">
-            <span>see all</span>
-            <MdChevronRight className="text-lg" />
-          </Link>
         </div>
 
         {/* movies */}
@@ -107,9 +99,12 @@ const Home = () => {
             <span>Top Rated</span> <AiFillStar className="text-[#ef4b4b]" />
           </span>
 
-          <Link to="" className="text-white/70 flex items-center gap-2">
+          <Link
+            to="/movies/top-rated"
+            className="text-white/70 flex items-center gap-2 group"
+          >
             <span>see all</span>
-            <MdChevronRight className="text-lg" />
+            <MdChevronRight className="text-lg group-hover:scale-150 transition-5" />
           </Link>
         </div>
 
@@ -135,10 +130,10 @@ const Home = () => {
 
           <Link
             to="/movies/popular"
-            className="text-white/70 flex items-center gap-2"
+            className="text-white/70 flex items-center gap-2 group"
           >
             <span>see all</span>
-            <MdChevronRight className="text-lg" />
+            <MdChevronRight className="text-lg group-hover:scale-150 transition-5" />
           </Link>
         </div>
 

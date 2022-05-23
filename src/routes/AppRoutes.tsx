@@ -9,10 +9,10 @@ import Recent from "../pages/Recent";
 import Series from "../pages/Series";
 import SeriesDetails from "../pages/SeriesDetails";
 import Settings from "../pages/Settings";
-import TopRated from "../pages/TopRated";
-import MyList from "../pages/MyList";
 import PopularTv from "../pages/specificPages/PopularTv";
 import PopularMovies from "../pages/specificPages/PopularMovies";
+import TrendingMovies from "../pages/specificPages/TrendingMovies";
+import TopRatedMovies from "../pages/specificPages/TopRatedMovies";
 
 const AppRoutes = () => {
   return (
@@ -20,8 +20,6 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/notifications" element={<Notifications />} />
       <Route path="/recent" element={<Recent />} />
-      <Route path="/my-list" element={<MyList />} />
-      <Route path="/top-rated" element={<TopRated />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/help" element={<Help />} />
 
@@ -34,6 +32,8 @@ const AppRoutes = () => {
       {/* specific pages */}
       <Route path="/tv/popular" element={<PopularTv />} />
       <Route path="/movies/popular" element={<PopularMovies />} />
+      <Route path="/movies/trending" element={<TrendingMovies />} />
+      <Route path="/movies/top-rated" element={<TopRatedMovies />} />
     </Routes>
   );
 };

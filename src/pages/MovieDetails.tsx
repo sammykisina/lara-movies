@@ -62,7 +62,7 @@ const MovieDetails: React.FC = () => {
             className="object-cover h-full w-full rounded-tr-2xl rounded-bl-2xl"
           />
 
-          <div className=" absolute top-0 left-0 h-full w-full bg-gradient-to-br from-[#007efe]/80 to-[#0060c0]/60 rounded-tr-2xl rounded-bl-2xl"></div>
+          <div className=" absolute top-0 left-0 h-full w-full bg-blue-500/50 from-[#007efe]/80 to-[#0060c0]/60 rounded-tr-2xl rounded-bl-2xl"></div>
 
           <div className="absolute top-0 px-2 py-2 w-full h-full lg:flex gap-4 ">
             {/* img */}

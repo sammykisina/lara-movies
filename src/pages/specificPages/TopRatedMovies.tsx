@@ -3,29 +3,28 @@ import SpecificPagesData from "../../components/SpecificPagesData";
 import { API_KEY, BASE_URL } from "../../constants/requests";
 import { MovieTV } from "../../typings";
 
-const PopularMovies = () => {
+const TopRatedMovies = () => {
   const [page, setPage] = useState<number>(1);
-  const [popularMovies, setPopularMovies] = useState<MovieTV[]>([]);
+  const [topRatedMovies, setTopRatedMovies] = useState<MovieTV[]>([]);
 
-  const apiURl = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
+  const apiURl = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${page}`;
   // fetch data when the url changes
   useEffect(() => {
-    const getPopularMovies = async () => {
+    const getTopRatedMovies = async () => {
       const data = await fetch(apiURl).then((response) => response.json());
-      setPopularMovies(data?.results);
+      setTopRatedMovies(data?.results);
     };
 
-    getPopularMovies();
+    getTopRatedMovies();
   }, [apiURl]);
-
   return (
     <SpecificPagesData
-      data={popularMovies}
-      title="Most Popular Movies Now!"
+      data={topRatedMovies}
+      title="Top Rated Movies"
       page={page}
       setPage={setPage}
     />
   );
 };
 
-export default PopularMovies;
+export default TopRatedMovies;

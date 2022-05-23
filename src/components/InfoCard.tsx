@@ -161,7 +161,7 @@ const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
         </div>
       ) : (
         <div className="flex flex-col justify-center  h-full w-full relative">
-          <div className="absolute left-0 top-1/3">
+          <div className="absolute left-0 top-1/3 truncate  w-[130px] sm:w-[200px]">
             {tvOrMovie?.original_title || tvOrMovie?.original_name}
           </div>
 
