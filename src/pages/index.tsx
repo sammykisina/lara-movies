@@ -1,0 +1,11 @@
+export { default as Help } from "./Help";
+export { default as Movies } from "./Movies";
+export { default as Notifications } from "./Notifications";
+export { default as Recent } from "./Recent";
+export { default as Settings } from "./Settings";
+export { default as Series } from "./Series";
+export { default as PopularTv } from "./specificPages/PopularTv";
+export { default as PopularMovies } from "./specificPages/PopularMovies";
+export { default as TrendingMovies } from "./specificPages/TrendingMovies";
+export { default as TopRatedMovies } from "./specificPages/TopRatedMovies";
+export { default as MovieOrTvDetails } from "../components/MovieOrTvDetails";

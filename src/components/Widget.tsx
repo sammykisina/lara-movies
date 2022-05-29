@@ -1,22 +1,15 @@
-import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import Image from "../assets/images/sammy profile pic.jpg";
-import { BiChevronDown, BiGitPullRequest } from "react-icons/bi";
-import { FiSearch } from "react-icons/fi";
 import { mediaServices } from "../constants/mediaServices";
 import { AiOutlinePlus } from "react-icons/ai";
 import requests from "../constants/requests";
-import { Genre, MovieTV } from "../typings";
-import SingleGenre from "./SingleGenre";
 import { Link, useNavigate } from "react-router-dom";
-import { MdChevronRight, MdSearch } from "react-icons/md";
-import MovieTVRow from "./MovieTVRow";
-import useAuth from "../hooks/useAuth";
-import PopOver from "./popover/PopOver";
-import Search from "./Search";
-import Icons from "./ui/Icons";
+import { MdChevronRight } from "react-icons/md";
+import { PopOver, Search, MovieTVRow } from "./";
 import { useRecoilState } from "recoil";
 import { widgetState } from "../atoms/modalAtom";
+import { useAuth } from "../hooks";
+import { MovieTV } from "../typings";
 
 const Widget = () => {
   const [showWidget, setShowWidget] = useRecoilState(widgetState);
@@ -115,7 +108,11 @@ const Widget = () => {
             {netflixOriginals.length === 0 ? (
               <div>holders</div>
             ) : (
-              <MovieTVRow data={netflixOriginals} condition="watching" />
+              <MovieTVRow
+                data={netflixOriginals}
+                condition="watching"
+                media_type="tv"
+              />
             )}
           </div>
         </div>

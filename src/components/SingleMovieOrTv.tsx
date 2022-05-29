@@ -1,30 +1,31 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { mediaTypeState } from "../atoms/modalAtom";
 import { MovieTV } from "../typings";
-import InfoCard from "./InfoCard";
+import { InfoCard } from "./";
 
 interface props {
   TvOrMovie: MovieTV;
   condition: string;
-  condition_two?: string;
+  media_type: string;
 }
 
 const SingleMovieOrTv: React.FC<props> = ({
   TvOrMovie,
   condition,
-  condition_two,
+  media_type,
 }) => {
-  const location = useLocation();
+  const mediaType = useRecoilValue(mediaTypeState);
 
   return (
-    // <Link to={`/movie/${TvOrMovie.id}`}>
     <div
       className={`relative flex min-w-[300px] ${
         condition === "display" ? "h-[200px]" : "h-[150px] "
       } cursor-pointer  transition duration-200 ease-out`}
     >
       <Link
-        to={`/${location?.pathname === "/" ? "movie" : "tv"}/${TvOrMovie.id}`}
+        to={`/${mediaType || media_type}/${TvOrMovie.id}`}
         className={`relative w-full flex h-full
         } cursor-pointer  transition duration-200 ease-out`}
       >
@@ -39,8 +40,8 @@ const SingleMovieOrTv: React.FC<props> = ({
 
       <InfoCard
         condition={condition}
-        condition_two={condition_two}
         tvOrMovie={TvOrMovie}
+        media_type={media_type}
       />
     </div>
     // </Link>

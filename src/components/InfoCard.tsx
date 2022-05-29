@@ -11,36 +11,27 @@ import toast, { Toaster } from "react-hot-toast";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiPlay } from "react-icons/fi";
 import { MdOutlineCheck } from "react-icons/md";
-import { useLocation } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import {
-  currentLocationPathState,
-  currentMovieTvIdState,
-  modalState,
-} from "../atoms/modalAtom";
+import { currentMovieTvIdState, modalState } from "../atoms/modalAtom";
 import { db } from "../firebase";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks";
 import { MovieTV } from "../typings";
-import Notify from "./hotToast/Notify";
-import Button from "./ui/Button";
-import Icons from "./ui/Icons";
+import { Notify, Button, Icons } from "./";
 
 interface props {
   condition: string;
-  condition_two?: string;
   tvOrMovie: MovieTV;
+  media_type: string;
 }
 
-const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
+const InfoCard: React.FC<props> = ({ condition, tvOrMovie, media_type }) => {
   const setShowModal = useSetRecoilState(modalState);
   const setCurrentMovieTvId = useSetRecoilState(currentMovieTvIdState);
-  const setCurrentLocationPath = useSetRecoilState(currentLocationPathState);
   const [addedToList, setAddedToList] = useState<boolean>(false);
   const [tvsOrMovies, setTvsOrMovies] = useState<DocumentData[] | MovieTV[]>(
     []
   );
 
-  const location = useLocation();
   const { user } = useAuth();
 
   // adding a movie or series to a list
@@ -70,7 +61,7 @@ const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
       await setDoc(
         doc(db, "users", user!?.uid, "myList", tvOrMovie?.id.toString()),
 
-        { ...tvOrMovie, media_type: location.pathname === "/" ? "movie" : "tv" }
+        { ...tvOrMovie, media_type }
       );
 
       toast.custom((t) => (
@@ -129,16 +120,11 @@ const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
 
               <div className="flex gap-2">
                 <Button
-                  btnStyles={`bg-[#ef4b4b] rounded-full px-2 py-1  ${
-                    condition_two === "watch_later" && "hidden"
-                  }`}
+                  btnStyles={`bg-[#ef4b4b] rounded-full px-2 py-1`}
                   title="Watch now"
                   purpose={() => {
                     setCurrentMovieTvId(tvOrMovie?.id);
                     setShowModal(true);
-                    setCurrentLocationPath(
-                      location?.pathname === "/" ? "movie" : "tv"
-                    );
                   }}
                 />
 
@@ -172,9 +158,6 @@ const InfoCard: React.FC<props> = ({ condition, tvOrMovie, condition_two }) => {
               purpose={() => {
                 setCurrentMovieTvId(tvOrMovie?.id);
                 setShowModal(true);
-                setCurrentLocationPath(
-                  location?.pathname === "/" ? "movie" : "tv"
-                );
               }}
             />
 

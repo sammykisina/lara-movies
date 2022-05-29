@@ -1,12 +1,11 @@
 import React from "react";
-import PlaceHolder from "./PlaceHolder";
+import { PlaceHolder, SpinnerLoader } from "../";
 
 interface props {
   condition: string;
-  extraCondition?: string;
 }
 
-const MovieTvLoader: React.FC<props> = ({ condition, extraCondition }) => {
+const MovieTvLoader: React.FC<props> = ({ condition }) => {
   return (
     <div
       className={`${
@@ -21,45 +20,11 @@ const MovieTvLoader: React.FC<props> = ({ condition, extraCondition }) => {
             }   min-w-[300px] rounded-tl-3xl rounded-br-3xl`}
           />
 
-          {condition === "display" ? (
-            <div className=" absolute top-[100px] flex flex-col gap-2 mt-6">
-              <PlaceHolder extraStyles="h-[15px]  min-w-[200px] ml-5 bg-gray-500/30 rounded-lg" />
-
-              <div className="w-[250px] flex justify-between items-center gap-[40px]">
-                <div className="w-[50px]">
-                  <PlaceHolder extraStyles="h-[15px] min-w-[50px] ml-5 bg-gray-500/30 rounded-lg" />
-                </div>
-
-                <div className="flex items-center gap-2  justify-between">
-                  {/* play btn holder */}
-                  <div
-                    className={`${
-                      extraCondition === "trending" ? " inline-block" : "hidden"
-                    }`}
-                  >
-                    <PlaceHolder extraStyles="h-[30px] min-w-[50px] ml-5 bg-gray-500/30 rounded-full" />
-                  </div>
-
-                  {/* add btn holder */}
-                  <div className="w-[100px]">
-                    <PlaceHolder extraStyles="h-[35px] w-[35px] ml-14 bg-gray-500/30 rounded-full" />
-                  </div>
-                </div>
-              </div>
+          <div className=" absolute top-0 left-0  w-full h-full flex justify-center items-center">
+            <div className="bg-gray-900 p-1 rounded-full">
+              <SpinnerLoader color="fill-gray-300" />
             </div>
-          ) : (
-            <div>
-              <div className="absolute w-[200px] bottom-1/3">
-                <PlaceHolder extraStyles="h-[15px] min-w-[50px] ml-5 bg-gray-500/30 rounded-lg" />
-              </div>
-
-              <div className="absolute bottom-0 mt-2 flex gap-3 mb-1 pl-2">
-                <PlaceHolder extraStyles="p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 w-[30px] h-[30px] flex  transition-5" />
-
-                <PlaceHolder extraStyles="p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 w-[30px] h-[30px] flex  transition-5" />
-              </div>
-            </div>
-          )}
+          </div>
         </div>
       ))}
     </div>

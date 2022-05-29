@@ -14,6 +14,11 @@ export const currentLocationPathState = atom<string | "">({
   default: "",
 });
 
+export const mediaTypeState = atom<string | "">({
+  key: "mediaTypeState",
+  default: "",
+});
+
 export const currentMovieTvIdState = atom<number | undefined>({
   key: "currentMovieTvIdState",
   default: undefined,

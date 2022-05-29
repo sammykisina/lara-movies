@@ -1,30 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { trailerState } from "../atoms/modalAtom";
-import InformationRow from "../components/InformationRow";
-import MovieOrTvDetailsLoader from "../components/loader/MovieOrTvDetailsLoader";
-import MovieTvInteractiveBtns from "../components/MovieTvInteractiveBtns";
-import RateProgress from "../components/RateProgress";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  currentMovieTvIdState,
+  mediaTypeState,
+  modalState,
+  trailerState,
+} from "../atoms/modalAtom";
+import {
+  InformationRow,
+  MovieOrTvDetailsLoader,
+  RateProgress,
+  Button,
+} from "../components";
+
 import { baseURL } from "../constants/movieOrTv";
 import { Cast, Crew, Element, MovieTV } from "../typings";
 import { timeConvert } from "../utils/movieSeriesUtils";
 
-const MovieDetails: React.FC = () => {
-  // const { movieOrTv, id } = useParams();
+const MovieOrTvDetails: React.FC = () => {
   const [data, setData] = useState<MovieTV | null>(null);
   const [crew, setCrew] = useState<Crew[] | null>(null);
   const [cast, setCast] = useState<Cast[] | null>(null);
   const setTrailer = useSetRecoilState(trailerState);
+  const setShowModal = useSetRecoilState(modalState);
+  const setCurrentMovieTvId = useSetRecoilState(currentMovieTvIdState);
+  const setMediaType = useSetRecoilState(mediaTypeState);
 
-  const { id } = useParams();
+  const { id, mediaType } = useParams();
 
   useEffect(() => {
     if (!id) return;
 
     const fetchMovieOrTv = async () => {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&append_to_response=videos,images,credits`
+        `https://api.themoviedb.org/3/${mediaType}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&append_to_response=videos,images,credits`
       ).then((response) => response.json());
 
       setData(data);
@@ -111,7 +121,15 @@ const MovieDetails: React.FC = () => {
               </div>
 
               {/* the btns */}
-              <MovieTvInteractiveBtns currentlySelectedMovieTvId={id} />
+              <Button
+                btnStyles={`bg-[#ef4b4b] rounded-full px-4 py-1 w-fit`}
+                title="Watch now"
+                purpose={() => {
+                  setCurrentMovieTvId(Number(id));
+                  setShowModal(true);
+                  setMediaType(mediaType!);
+                }}
+              />
 
               {/* the tag */}
               <span className=" text-base font-semibold">{data?.tagline}</span>
@@ -152,4 +170,4 @@ const MovieDetails: React.FC = () => {
   );
 };
 
-export default MovieDetails;
+export default MovieOrTvDetails;

@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { HiMenuAlt4, HiOutlineViewGrid } from "react-icons/hi";
 import { MdOutlineNotifications } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { sidebarState, widgetState } from "../atoms/modalAtom";
 import { allTopnavRouteLinks } from "../constants/topnavRouteLinks";
-import Icons from "./ui/Icons";
+import { Icons } from "../components";
 
 const TopNav = () => {
   const [showSidebar, setShowSidebar] = useRecoilState(sidebarState);

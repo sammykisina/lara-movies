@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { modalState, sidebarState, widgetState } from "../atoms/modalAtom";
-import Modal from "../components/modal/Modal";
-import Sidebar from "../components/Sidebar";
-import TopNav from "../components/TopNav";
-import Widget from "../components/Widget";
 import AppRoutes from "../routes/AppRoutes";
+
+import { Modal, Sidebar, TopNav, Widget } from "../components";
 
 const Layout: React.FC = () => {
   const showModal = useRecoilValue(modalState);

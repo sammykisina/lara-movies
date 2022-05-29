@@ -4,15 +4,19 @@ import {
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 import { MovieTV } from "../typings";
-import SingleMovieOrTv from "./SingleMovieOrTv";
+import { SingleMovieOrTv } from "./";
 
 interface props {
   data: MovieTV[];
   condition: string;
-  condition_two?: string;
+  media_type: string;
 }
 
-const MovieTVRow: React.FC<props> = ({ data, condition, condition_two }) => {
+const MovieTVRow: React.FC<props> = ({
+  data,
+  condition,
+  media_type,
+}) => {
   const movieRowRef = useRef<HTMLDivElement>(null);
   const [isMoved, setIsMoved] = useState<boolean>(false);
 
@@ -47,7 +51,7 @@ const MovieTVRow: React.FC<props> = ({ data, condition, condition_two }) => {
             key={TvOrMovieIndex}
             TvOrMovie={TvOrMovie}
             condition={condition}
-            condition_two={condition_two}
+            media_type={media_type}
           />
         ))}
       </div>

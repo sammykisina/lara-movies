@@ -2,20 +2,16 @@ import { useEffect, useState } from "react";
 import MuiModal from "@mui/material/Modal";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
-  currentLocationPathState,
   currentMovieTvIdState,
+  mediaTypeState,
   modalState,
-  movieOrTvState,
   trailerState,
 } from "../../atoms/modalAtom";
-import { HiPlus, HiX } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 import Button from "../ui/Button";
-import { Element, Genre } from "../../typings";
+import { Element } from "../../typings";
 import ReactPlayer from "react-player/lazy";
-import { FaVolumeOff, FaVolumeUp } from "react-icons/fa";
 import Icons from "../ui/Icons";
-import { BsPlayFill } from "react-icons/bs";
-import { AiFillHeart } from "react-icons/ai";
 import {
   MdOutlinePlayArrow,
   MdOutlineVolumeOff,
@@ -25,9 +21,8 @@ import {
 const Modal = () => {
   const [showModal, setShowModal] = useRecoilState(modalState);
   const currentMovieTvId = useRecoilValue(currentMovieTvIdState);
-  const currentLocationPath = useRecoilValue(currentLocationPathState);
+  const mediaType = useRecoilValue(mediaTypeState);
   const [trailer, setTrailer] = useState<string>("");
-  const [globalTrailer, setGlobalTrailer] = useRecoilState(trailerState);
   const [muted, setMuted] = useState<boolean>(true);
 
   useEffect(() => {
@@ -35,7 +30,7 @@ const Modal = () => {
 
     const fetchMovieOrTvVideos = async () => {
       const data = await fetch(
-        `https://api.themoviedb.org/3/${currentLocationPath}/${currentMovieTvId}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/${mediaType}/${currentMovieTvId}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
       ).then((response) => response.json());
 
       if (data?.results) {
@@ -47,15 +42,12 @@ const Modal = () => {
       }
     };
 
-    if (globalTrailer === null) {
-      fetchMovieOrTvVideos();
-    }
-  }, [currentLocationPath, currentMovieTvId, globalTrailer]);
+    fetchMovieOrTvVideos();
+  }, [mediaType, currentMovieTvId]);
 
   // close the modal
   const handleClose = () => {
     setShowModal(false);
-    setGlobalTrailer(null);
   };
 
   return (
@@ -72,22 +64,17 @@ const Modal = () => {
         />
 
         <div className=" relative pt-[56.25%] md:pt-[50%]">
-          {globalTrailer !== null || trailer === null ? (
+          {trailer === null ? (
             <div></div>
           ) : (
             <ReactPlayer
-              url={`https://www.youtube.com/watch?v=${
-                globalTrailer !== null ? globalTrailer : trailer
-              }`}
+              url={`https://www.youtube.com/watch?v=${trailer}`}
               width="100%"
               height="100%"
               style={{
                 position: "absolute",
                 top: "0",
                 left: "0",
-                border: "3px solid #ef4b4b",
-                borderTopLeftRadius: "100px",
-                borderBottomRightRadius: "100px",
               }}
               playing
               muted={muted}
