@@ -28,6 +28,7 @@ const MovieOrTvDetails: React.FC = () => {
   const setMediaType = useSetRecoilState(mediaTypeState);
 
   const { id, mediaType } = useParams();
+  console.log("the selected movie of series", data?.episode_run_time);
 
   useEffect(() => {
     if (!id) return;
@@ -57,7 +58,7 @@ const MovieOrTvDetails: React.FC = () => {
     };
 
     fetchMovieOrTv();
-  }, [id]);
+  }, [id, mediaType]);
 
   return (
     <div>
@@ -99,16 +100,20 @@ const MovieOrTvDetails: React.FC = () => {
                 {/* the title */}
                 <span className="text-2xl text-white">
                   {data?.original_title || data?.original_name} (
-                  {data?.release_date?.substring(0, 4)})
+                  {data?.release_date?.substring(0, 4) ||
+                    data?.first_air_date?.substring(0, 4)}
+                  )
                 </span>
 
                 <div>
                   <div className=" flex gap-2 items-center">
                     {/* the release data */}
-                    <span>{data?.release_date}</span>
+                    <span>{data?.release_date || data?.first_air_date}</span>
                     {/* total time */}
                     <span className="text-sm">
-                      {timeConvert(data!?.runtime)}
+                      {mediaType === "movie"
+                        ? timeConvert(data!?.runtime)
+                        : data?.episode_run_time}
                     </span>
                   </div>
                   {/* genre */}
@@ -121,15 +126,17 @@ const MovieOrTvDetails: React.FC = () => {
               </div>
 
               {/* the btns */}
-              <Button
-                btnStyles={`bg-[#ef4b4b] rounded-full px-4 py-1 w-fit`}
-                title="Watch now"
-                purpose={() => {
-                  setCurrentMovieTvId(Number(id));
-                  setShowModal(true);
-                  setMediaType(mediaType!);
-                }}
-              />
+              <div>
+                <Button
+                  btnStyles={`bg-[#ef4b4b] rounded-full px-4 py-1 w-fit`}
+                  title="Watch now"
+                  purpose={() => {
+                    setCurrentMovieTvId(Number(id));
+                    setShowModal(true);
+                    setMediaType(mediaType!);
+                  }}
+                />
+              </div>
 
               {/* the tag */}
               <span className=" text-base font-semibold">{data?.tagline}</span>

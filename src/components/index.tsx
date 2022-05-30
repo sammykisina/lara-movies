@@ -9,6 +9,7 @@ export { default as Icons } from "./ui/Icons";
 export { default as InformationRow } from "./InformationRow";
 export { default as PopOver } from "./popover/PopOver";
 export { default as Search } from "./Search";
+export { default as SpecificPagesData } from "./SpecificPagesData";
 
 export { default as MovieTvLoader } from "./loader/MovieTvLoader";
 export { default as PlaceHolder } from "./loader/PlaceHolder";
