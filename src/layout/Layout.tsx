@@ -1,15 +1,27 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { modalState, sidebarState, widgetState } from "../atoms/modalAtom";
+import {
+  showTrailerPlayModalState,
+  sidebarState,
+  widgetState,
+} from "../atoms/Atoms";
 import AppRoutes from "../routes/AppRoutes";
 
-import { Modal, Sidebar, TopNav, Widget } from "../components";
+import {
+  Modal,
+  Sidebar,
+  TopNav,
+  Widget,
+  TrailerPLayerModal,
+} from "../components";
 
 const Layout: React.FC = () => {
-  const showModal = useRecoilValue(modalState);
   const [showWidget, setShowWidget] = useRecoilState(widgetState);
   const [showSidebar, setShowSidebar] = useRecoilState(sidebarState);
+  const [showTrailerPLayModal, setShowTrailerPLayModal] = useRecoilState(
+    showTrailerPlayModalState
+  );
 
   // close the widget and the sidebar when the appRoutes body is clicked
   const handleClosingOfSidebarAndWidget = () => {
@@ -30,7 +42,7 @@ const Layout: React.FC = () => {
           <TopNav />
           <div
             className={`mt-14 sm:mt-24 ${
-              showModal && "!h-screen overflow-hidden"
+              showTrailerPLayModal && "!h-screen overflow-hidden"
             }`}
             onClick={handleClosingOfSidebarAndWidget}
           >
@@ -44,7 +56,12 @@ const Layout: React.FC = () => {
         </div>
 
         {/* modal for each movie */}
-        {showModal && <Modal />}
+        <Modal
+          component={<TrailerPLayerModal />}
+          modalState={showTrailerPLayModal}
+          close={setShowTrailerPLayModal}
+          type="modalHeight"
+        />
       </section>
     </BrowserRouter>
   );

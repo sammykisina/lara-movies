@@ -12,11 +12,7 @@ interface props {
   media_type: string;
 }
 
-const MovieTVRow: React.FC<props> = ({
-  data,
-  condition,
-  media_type,
-}) => {
+const MovieTVRow: React.FC<props> = ({ data, condition, media_type }) => {
   const movieRowRef = useRef<HTMLDivElement>(null);
   const [isMoved, setIsMoved] = useState<boolean>(false);
 
@@ -52,6 +48,7 @@ const MovieTVRow: React.FC<props> = ({
             TvOrMovie={TvOrMovie}
             condition={condition}
             media_type={media_type}
+            conditionTwo="normal"
           />
         ))}
       </div>

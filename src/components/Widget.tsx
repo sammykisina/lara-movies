@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { MdChevronRight } from "react-icons/md";
 import { PopOver, Search, MovieTVRow } from "./";
 import { useRecoilState } from "recoil";
-import { widgetState } from "../atoms/modalAtom";
+import { widgetState } from "../atoms/Atoms";
 import { useAuth } from "../hooks";
 import { MovieTV } from "../typings";
 

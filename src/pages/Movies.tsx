@@ -4,12 +4,13 @@ import { MovieTV } from "../typings";
 import { useList, useAuth } from "../hooks";
 import { EmptyListIdentifier, MovieOrTvIntro, MovieTVRow } from "../components";
 import { useSetRecoilState } from "recoil";
-import { mediaTypeState } from "../atoms/modalAtom";
+import { mediaTypeState } from "../atoms/Atoms";
 
 const Movies = () => {
   const [trendingMovies, setTrendingMovies] = useState<MovieTV[]>([]);
   const [topRated, setTopRated] = useState<MovieTV[]>([]);
   const [popularMovies, setPopularMovies] = useState<MovieTV[]>([]);
+  const [upcomingMovies, setUpcomingMovies] = useState<MovieTV[]>([]);
   const setMediaType = useSetRecoilState(mediaTypeState);
 
   //* the authenticated (login) user
@@ -24,15 +25,18 @@ const Movies = () => {
   //* useEffect to fetch api data when the component loads
   const getData = async () => {
     try {
-      const [trendingMovies, topRated, popularMovies] = await Promise.all([
-        fetch(requests.fetchTreadingMovies).then((res) => res.json()),
-        fetch(requests.fetchTopRatedMovies).then((res) => res.json()),
-        fetch(requests.fetchPopularMovies).then((res) => res.json()),
-      ]);
+      const [trendingMovies, topRated, popularMovies, upcomingMovies] =
+        await Promise.all([
+          fetch(requests.fetchTreadingMovies).then((res) => res.json()),
+          fetch(requests.fetchTopRatedMovies).then((res) => res.json()),
+          fetch(requests.fetchPopularMovies).then((res) => res.json()),
+          fetch(requests.fetchUpcomingMovies).then((res) => res.json()),
+        ]);
 
       setTrendingMovies(trendingMovies?.results);
       setTopRated(topRated?.results);
       setPopularMovies(popularMovies?.results);
+      setUpcomingMovies(upcomingMovies?.results);
 
       setMediaType("movie");
     } catch (error) {
@@ -108,6 +112,17 @@ const Movies = () => {
           condition="watch_later"
           media_type="movie"
           link="/movies/popular"
+        />
+      </div>
+
+      {/* popular */}
+      <div className=" my-12">
+        <MovieOrTvIntro
+          title="Upcoming"
+          tvOrMoviesData={upcomingMovies}
+          condition="display"
+          media_type="movie"
+          link="/movies/upcoming"
         />
       </div>
     </section>

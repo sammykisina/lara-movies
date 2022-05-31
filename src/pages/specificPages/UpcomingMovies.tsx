@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import SpecificPagesData from "../../components/SpecificPagesData";
+import { SpecificPagesData } from "../../components";
 import { API_KEY, BASE_URL } from "../../constants/requests";
 import { MovieTV } from "../../typings";
 
-const TrendingMovies = () => {
+const UpcomingMovies = () => {
   const [page, setPage] = useState<number>(1);
-  const [trendingMovies, setTrendingMovies] = useState<MovieTV[]>([]);
+  const [upcomingMovies, setUpcomingMovies] = useState<MovieTV[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const apiURl = `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=en-US&page=${page}`;
+  const apiURl = `${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=en-US&page=${page}`;
 
-  // fetch data when the url changes
+  //* fetch data when the url changes
   useEffect(() => {
     const getPopularMovies = async () => {
       setLoading(true);
       const data = await fetch(apiURl).then((response) => response.json());
-      setTrendingMovies(data?.results);
+      setUpcomingMovies(data?.results);
       setLoading(false);
     };
 
@@ -24,8 +24,8 @@ const TrendingMovies = () => {
 
   return (
     <SpecificPagesData
-      data={trendingMovies}
-      title="What's Trending Now!"
+      data={upcomingMovies}
+      title="What's Coming Next!"
       page={page}
       setPage={setPage}
       loading={loading}
@@ -34,4 +34,4 @@ const TrendingMovies = () => {
   );
 };
 
-export default TrendingMovies;
+export default UpcomingMovies;

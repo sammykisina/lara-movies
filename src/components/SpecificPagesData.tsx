@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { pages } from "../constants/pages";
 import { MovieTV } from "../typings";
-import { SpinnerLoader, RateProgress, Button, Icons } from "./";
+import { SpinnerLoader, Button, SingleMovieOrTv } from "./";
 
 interface topHeaderAndPagesProps extends props {}
 const TopHeaderAndPages: React.FC<topHeaderAndPagesProps> = ({
@@ -33,6 +33,7 @@ interface props {
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   loading?: boolean;
+  media_type?: string;
 }
 
 const SpecificPagesData: React.FC<props> = ({
@@ -41,6 +42,7 @@ const SpecificPagesData: React.FC<props> = ({
   page,
   setPage,
   loading,
+  media_type,
 }) => {
   return (
     <div>
@@ -61,60 +63,13 @@ const SpecificPagesData: React.FC<props> = ({
           ) : (
             <div className="grid grid-cols-2 lg:grid-cols-3 items-center gap-3   overflow-scroll scrollbar-hide h-full mt-[150px]">
               {data!.map((singleData, singleDataIndex) => (
-                <div className="relative" key={singleDataIndex}>
-                  <Link to={`/movie/${singleData?.id}`}>
-                    <div className="flex justify-center items-center">
-                      <div className="relative w-full flex h-[200px]">
-                        <img
-                          src={`https://image.tmdb.org/t/p/w500${
-                            singleData.backdrop_path || singleData.poster_path
-                          }`}
-                          alt=""
-                          className="object-cover rounded-tl-3xl rounded-br-3xl w-full"
-                        />
-                      </div>
-
-                      <div className=" absolute px-1 w-full bottom-0  py-2 flex flex-col">
-                        <span className="truncate">
-                          {singleData?.original_title}
-                        </span>
-                        <div className={`flex justify-between items-center`}>
-                          <span>{singleData.release_date}</span>
-
-                          <RateProgress
-                            size={30}
-                            progress={singleData!?.vote_average}
-                            strokeWidth={4}
-                            circleTwoStroke="#d2d531"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-
-                  {/* btns */}
-                  {/* <div className="absolute bottom-0 left-0 h-[40px] w-full z-40 bg-blue-500/40 rounded-full mb-2 flex items-center justify-between px-4">
-                    <Icons
-                      iconStyles="icon group"
-                      icon={
-                        <MdPlayArrow
-                          className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
-                        />
-                      }
-                      // purpose={() => setShowSidebar(!showSidebar)}
-                    />
-
-                    <Icons
-                      iconStyles="icon group"
-                      icon={
-                        <MdAdd
-                          className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
-                        />
-                      }
-                      // purpose={() => setShowSidebar(!showSidebar)}
-                    />
-                  </div> */}
-                </div>
+                <SingleMovieOrTv
+                  key={singleDataIndex}
+                  TvOrMovie={singleData}
+                  condition="watch_later"
+                  conditionTwo=""
+                  media_type={media_type!}
+                />
               ))}
             </div>
           )}

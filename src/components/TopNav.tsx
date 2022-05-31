@@ -3,7 +3,7 @@ import { HiMenuAlt4, HiOutlineViewGrid } from "react-icons/hi";
 import { MdOutlineNotifications } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { sidebarState, widgetState } from "../atoms/modalAtom";
+import { sidebarState, widgetState } from "../atoms/Atoms";
 import { allTopnavRouteLinks } from "../constants/topnavRouteLinks";
 import { Icons } from "../components";
 
@@ -46,7 +46,7 @@ const TopNav = () => {
               iconStyles="icon group"
               icon={
                 <FaTimes
-                  className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s] `}
+                  className={`text-[#66b2ff] text-[1.5rem] cursor-pointer transition-all duration-[0.5s]`}
                 />
               }
               purpose={() => setShowSidebar(!showSidebar)}

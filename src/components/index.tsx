@@ -22,3 +22,4 @@ export { default as TopNav } from "./TopNav";
 export { default as Sidebar } from "./Sidebar";
 
 export { default as Modal } from "./modal/Modal";
+export { default as TrailerPLayerModal } from "./modal/modalComponents/TrailerPLayerModal";

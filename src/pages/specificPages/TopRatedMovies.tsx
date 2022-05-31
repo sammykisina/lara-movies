@@ -27,6 +27,7 @@ const TopRatedMovies = () => {
       page={page}
       setPage={setPage}
       loading={loading}
+      media_type="movie"
     />
   );
 };

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { mediaTypeState } from "../atoms/modalAtom";
+import { mediaTypeState } from "../atoms/Atoms";
 import EmptyListIdentifier from "../components/EmptyListIdentifier";
 import MovieOrTvIntro from "../components/MovieOrTvIntro";
 import MovieTVRow from "../components/MovieTVRow";

@@ -16,7 +16,7 @@
 
 @layer components {
   .sidebar {
-    @apply w-[calc(68px+156px)] fixed top-14 md:top-0  -left-[100%]  h-full bg-[#1e293b] transition-all duration-[0.5s]  shadow-md z-50 rounded-tr-md md:rounded-tr-none;
+    @apply w-[calc(68px+156px)] fixed top-14 md:top-0  -left-[100%]  h-full bg-[#1e293b] transition-all duration-[0.5s]  shadow-md z-40 rounded-tr-md md:rounded-tr-none;
   }
 
   .show__sidebar {
@@ -64,7 +64,7 @@
   }
 
   .popOverBtnStyles {
-    @apply flex items-center gap-4   py-1 px-3 rounded-lg text-white/50 hover:bg-[#132f4c]/50 transition-5;
+    @apply flex items-center gap-4 py-1 px-3 rounded-lg text-white/50 hover:bg-[#132f4c]/50 transition-5;
   }
 
   .modalBtn {
@@ -73,5 +73,26 @@
 
   .icon {
     @apply p-1 rounded-lg ring-1 ring-[#132f4c] hover:bg-[#132f4c]/50 cursor-pointer w-[30px] h-[30px] flex justify-center items-center transition-5;
+  }
+
+  /* the modal */
+  .modal-wrapper {
+    @apply fixed top-0 left-0 w-full h-full  grid place-items-center invisible  z-50 transition-all transform ease-in duration-300 scale-[0] bg-[#00000080] pt-32;
+  }
+
+  .modal-wrapper.show {
+    @apply visible z-50 scale-[1];
+  }
+
+  .modal {
+    @apply w-[90vw] max-w-[650px] bg-gray-900 relative rounded-tl-3xl rounded-br-3xl;
+  }
+
+  .autoHeight {
+    @apply h-auto;
+  }
+
+  .modalHeight {
+    @apply h-[55vh];
   }
 }

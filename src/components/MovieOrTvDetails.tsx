@@ -4,9 +4,10 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   currentMovieTvIdState,
   mediaTypeState,
-  modalState,
+  showTrailerPlayModalState,
+  // modalState,
   trailerState,
-} from "../atoms/modalAtom";
+} from "../atoms/Atoms";
 import {
   InformationRow,
   MovieOrTvDetailsLoader,
@@ -23,7 +24,7 @@ const MovieOrTvDetails: React.FC = () => {
   const [crew, setCrew] = useState<Crew[] | null>(null);
   const [cast, setCast] = useState<Cast[] | null>(null);
   const setTrailer = useSetRecoilState(trailerState);
-  const setShowModal = useSetRecoilState(modalState);
+  const setShowTrailerPLayModal = useSetRecoilState(showTrailerPlayModalState);
   const setCurrentMovieTvId = useSetRecoilState(currentMovieTvIdState);
   const setMediaType = useSetRecoilState(mediaTypeState);
 
@@ -67,30 +68,44 @@ const MovieOrTvDetails: React.FC = () => {
       ) : (
         <div className="relative h-[880px] md:h-[890px] lg:h-[600px]">
           {/* the bg img */}
-          <img
-            src={`${baseURL}${data?.backdrop_path || data?.poster_path}`}
-            alt=""
-            className="object-cover h-full w-full rounded-tr-2xl rounded-bl-2xl"
-          />
+          {data?.backdrop_path ||
+            (data?.poster_path ? (
+              <img
+                src={`${baseURL}${data?.backdrop_path || data?.poster_path}`}
+                alt=""
+                className="object-cover h-full w-full rounded-tr-2xl rounded-bl-2xl"
+              />
+            ) : (
+              <div className="ring-1 h-full rounded-tr-2xl rounded-bl-2xl"></div>
+            ))}
 
           <div className=" absolute top-0 left-0 h-full w-full bg-blue-500/50 from-[#007efe]/80 to-[#0060c0]/60 rounded-tr-2xl rounded-bl-2xl"></div>
 
           <div className="absolute top-0 px-2 py-2 w-full h-full lg:flex gap-4 ">
             {/* img */}
             <div className="relative lg:w-[1000px] lg:h-[530px]">
-              <img
-                src={`${baseURL}${data?.backdrop_path || data?.poster_path}`}
-                alt=""
-                className="object-cover h-full w-full rounded-tl-3xl rounded-br-3xl"
-              />
+              {data?.backdrop_path ||
+                (data?.poster_path ? (
+                  <img
+                    src={`${baseURL}${
+                      data?.backdrop_path || data?.poster_path
+                    }`}
+                    alt=""
+                    className="object-cover h-full w-full rounded-tl-3xl rounded-br-3xl"
+                  />
+                ) : (
+                  <div className="ring-1 h-[200px]  lg:h-[530px] rounded-tl-3xl rounded-br-3xl"></div>
+                ))}
 
               <div className="absolute  -bottom-[30px] p-3">
-                <RateProgress
-                  size={40}
-                  progress={data!?.vote_average}
-                  strokeWidth={4}
-                  circleTwoStroke="#d2d531"
-                />
+                {data!?.vote_average > 0 && (
+                  <RateProgress
+                    size={40}
+                    progress={data!?.vote_average}
+                    strokeWidth={4}
+                    circleTwoStroke="#d2d531"
+                  />
+                )}
               </div>
             </div>
 
@@ -132,7 +147,7 @@ const MovieOrTvDetails: React.FC = () => {
                   title="Watch now"
                   purpose={() => {
                     setCurrentMovieTvId(Number(id));
-                    setShowModal(true);
+                    setShowTrailerPLayModal(true);
                     setMediaType(mediaType!);
                   }}
                 />

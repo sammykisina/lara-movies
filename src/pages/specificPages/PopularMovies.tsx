@@ -28,6 +28,7 @@ const PopularMovies = () => {
       page={page}
       setPage={setPage}
       loading={loading}
+      media_type="movie"
     />
   );
 };

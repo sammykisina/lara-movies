@@ -10,7 +10,7 @@ import Icons from "../ui/Icons";
 import { BsBookmarkDash } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { widgetState } from "../../atoms/modalAtom";
+import { widgetState } from "../../atoms/Atoms";
 
 const PopOver = () => {
   const { user, logout } = useAuth();

@@ -2,7 +2,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { sidebarState } from "../atoms/modalAtom";
+import { sidebarState } from "../atoms/Atoms";
 import { allSidebarRoutesLinks } from "../constants/sidebarRouteLinks";
 import { useAuth } from "../hooks";
 import { Button } from "./";
