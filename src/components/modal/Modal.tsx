@@ -3,11 +3,10 @@ import React from "react";
 interface props {
   component: React.ReactNode;
   modalState: boolean;
-  close: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
 }
 
-const Modal: React.FC<props> = ({ component, modalState, close, type }) => {
+const Modal: React.FC<props> = ({ component, modalState, type }) => {
   return (
     <div className={`${modalState ? "modal-wrapper show" : "modal-wrapper"}`}>
       <div

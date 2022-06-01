@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import SpinnerLoader from "../../components/loader/SpinnerLoader";
-import Button from "../../components/ui/Button";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../hooks";
+import { SpinnerLoader, Button } from "../../components";
 
 interface Inputs {
   email: string;

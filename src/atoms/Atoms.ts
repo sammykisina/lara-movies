@@ -12,11 +12,6 @@ export const tvOrMovieState = atom<MovieTV | DocumentData | null>({
   default: null,
 });
 
-export const currentLocationPathState = atom<string | "">({
-  key: "currentLocationPathState",
-  default: "",
-});
-
 export const mediaTypeState = atom<string | "">({
   key: "mediaTypeState",
   default: "",
@@ -36,3 +31,9 @@ export const trailerState = atom<string | null>({
 export const sidebarState = atom({ key: "sidebarState", default: false });
 
 export const widgetState = atom({ key: "widgetState", default: false });
+
+// search modal
+export const showSearchModalState = atom({
+  key: "showSearchModalState",
+  default: false,
+});

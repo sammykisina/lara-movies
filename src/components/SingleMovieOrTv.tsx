@@ -8,7 +8,7 @@ import { InfoCard } from "./";
 interface props {
   TvOrMovie: MovieTV;
   condition: string;
-  media_type: string;
+  media_type?: string;
   conditionTwo: string;
 }
 

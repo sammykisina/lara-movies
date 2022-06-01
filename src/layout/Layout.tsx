@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
+  showSearchModalState,
   showTrailerPlayModalState,
   sidebarState,
   widgetState,
@@ -14,6 +15,7 @@ import {
   TopNav,
   Widget,
   TrailerPLayerModal,
+  SearchModal,
 } from "../components";
 
 const Layout: React.FC = () => {
@@ -22,6 +24,7 @@ const Layout: React.FC = () => {
   const [showTrailerPLayModal, setShowTrailerPLayModal] = useRecoilState(
     showTrailerPlayModalState
   );
+  const showSearchModal = useRecoilValue(showSearchModalState);
 
   // close the widget and the sidebar when the appRoutes body is clicked
   const handleClosingOfSidebarAndWidget = () => {
@@ -55,12 +58,18 @@ const Layout: React.FC = () => {
           <Widget />
         </div>
 
-        {/* modal for each movie */}
+        {/* movie or tv trailer player modal */}
         <Modal
           component={<TrailerPLayerModal />}
           modalState={showTrailerPLayModal}
-          close={setShowTrailerPLayModal}
           type="modalHeight"
+        />
+
+        {/* search modal */}
+        <Modal
+          component={<SearchModal />}
+          modalState={showSearchModal}
+          type="autoModal"
         />
       </section>
     </BrowserRouter>
