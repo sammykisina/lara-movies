@@ -36,7 +36,7 @@ const TopNav = () => {
 
   return (
     <header
-      className={`flex justify-between px-2 pt-3  sm:px-5 items-center h-[3rem] text-[#afa5d9]/40 transition-all duration-[0.5s] w-full fixed top-0 left-0 z-50  md:ml-[calc(224px+1rem)] md:pr-[calc(224px+2rem)] xl:md:pr-[calc(500px+2rem)] bg-gray-900`}
+      className={`flex justify-between px-2 py-3  sm:px-5 items-center h-[3rem] text-[#afa5d9]/40 transition-all duration-[0.5s] w-full fixed top-0 left-0 z-50  md:ml-[calc(224px+1rem)] md:pr-[calc(224px+2rem)] xl:md:pr-[calc(500px+2rem)] bg-gray-900`}
     >
       {/* left side */}
       <div className="flex justify-center items-center gap-5">
