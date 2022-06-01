@@ -1,5 +1,3 @@
-import { MovieTV, TV } from "../typings";
-
 export const timeConvert = (n: number): string => {
   var num = n;
   var hours = num / 60;

@@ -104,7 +104,7 @@ const InfoCard: React.FC<props> = ({ condition, media_type, tvOrMovie }) => {
 
   return (
     <div
-      className={`absolute bottom-0 left-0 p-2 h-[100px] w-full  text-white rounded-md  transition-all duration-[0.5s] ease-out `}
+      className={`absolute bottom-0 left-0 p-2 h-[90px] w-full  text-white rounded-md  transition-all duration-[0.5s] ease-out `}
     >
       <Toaster position="bottom-center" />
       {condition === "display" ? (

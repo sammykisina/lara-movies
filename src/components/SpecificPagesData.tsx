@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { pages } from "../constants/pages";
 import { MovieTV } from "../typings";
 import { SpinnerLoader, Button, SingleMovieOrTv } from "./";
@@ -10,7 +9,7 @@ const TopHeaderAndPages: React.FC<topHeaderAndPagesProps> = ({
   page,
   setPage,
 }) => (
-  <div className="fixed md:ml-[calc(224px+1rem)] md:pr-[calc(224px+2rem)] xl:md:pr-[calc(500px+2rem)] top-[47px] left-0 z-50 bg-gray-900 w-full pt-3">
+  <div className="fixed md:ml-[calc(224px+1rem)] md:pr-[calc(224px+2rem)] xl:md:pr-[calc(500px+2rem)] top-[47px] left-0 z-50 bg-gray-900 w-full py-3">
     <span className="mx-3 text-white/70 text-lg font-semibold">{title}</span>
     <div className="flex  mt-1 items-center justify-center gap-2 h-[30px]   w-full ">
       {pages.map((singlePage, pageIndex) => (
@@ -61,7 +60,7 @@ const SpecificPagesData: React.FC<props> = ({
               <SpinnerLoader color="fill-gray-300" />
             </div>
           ) : (
-            <div className="grid grid-cols-2 lg:grid-cols-3 items-center gap-3   overflow-scroll scrollbar-hide h-full mt-[150px]">
+            <div className="grid grid-cols-2 lg:grid-cols-3 items-center gap-3  overflow-scroll scrollbar-hide h-full mt-[150px]">
               {data!.map((singleData, singleDataIndex) => (
                 <SingleMovieOrTv
                   key={singleDataIndex}

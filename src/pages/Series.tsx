@@ -79,11 +79,6 @@ const Series = () => {
               </span>
             )}
           </div>
-
-          <Link to="" className="text-white/70 flex items-center gap-2">
-            <span>see all</span>
-            <MdChevronRight className="text-lg" />
-          </Link>
         </div>
 
         {/* movies */}

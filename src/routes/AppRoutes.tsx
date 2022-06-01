@@ -8,13 +8,15 @@ import {
   Recent,
   Series,
   Settings,
-  PopularTv,
+  PopularTvs,
   PopularMovies,
   TrendingMovies,
   TopRatedMovies,
   MovieOrTvDetails,
 } from "../pages";
-import UpcomingMovies from "../pages/specificPages/UpcomingMovies";
+import UpcomingMovies from "../pages/specificPages/movies/UpcomingMovies";
+import TopRatedTvs from "../pages/specificPages/tv/TopRatedTvs";
+import TrendingTvs from "../pages/specificPages/tv/TrendingTvs";
 
 const AppRoutes = () => {
   return (
@@ -24,19 +26,20 @@ const AppRoutes = () => {
       <Route path="/recent" element={<Recent />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/help" element={<Help />} />
-
       {/* internal routes */}
       <Route path="/tv" element={<Series />} />
       <Route path=":mediaType/:id" element={<MovieOrTvDetails />} />
-      {/* <Route path="/tv/:id" element={<SeriesDetails />} /> */}
       <Route path="/login" element={<Login />} />
-
       {/* specific pages */}
-      <Route path="/tv/popular" element={<PopularTv />} />
+      {/* movies */}
       <Route path="/movies/popular" element={<PopularMovies />} />
       <Route path="/movies/trending" element={<TrendingMovies />} />
       <Route path="/movies/top-rated" element={<TopRatedMovies />} />
       <Route path="/movies/upcoming" element={<UpcomingMovies />} />
+      {/* tv */}
+      <Route path="/tv/popular" element={<PopularTvs />} />
+      <Route path="/tv/trending" element={<TrendingTvs />} />
+      <Route path="/tv/top-rated" element={<TopRatedTvs />} />
     </Routes>
   );
 };

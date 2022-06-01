@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import {
   currentMovieTvIdState,
   mediaTypeState,
@@ -77,7 +77,7 @@ const MovieOrTvDetails: React.FC = () => {
 
           <div className="absolute top-0 px-2 py-2 w-full h-full lg:flex gap-4 ">
             {/* img */}
-            <div className="relative lg:w-[1000px] lg:h-[530px]">
+            <div className="relative lg:w-[2500px] lg:h-[530px]">
               <img
                 src={`${baseURL}${data?.backdrop_path || data?.poster_path}`}
                 alt=""
