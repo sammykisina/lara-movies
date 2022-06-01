@@ -68,7 +68,7 @@
   }
 
   .modalBtn {
-    @apply flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/50 transition hover:border-white hover:bg-white/10;
+    @apply flex h-11 w-11 items-center justify-center rounded-full bg-[#2a2a2a]/50 transition hover:border-white hover:bg-white/10 cursor-pointer;
   }
 
   .icon {
@@ -85,7 +85,7 @@
   }
 
   .modal {
-    @apply w-[90vw] max-w-[650px] bg-gray-900 relative rounded-tl-3xl rounded-br-3xl;
+    @apply w-[90vw] max-w-[650px] bg-gray-900 relative  rounded-3xl overflow-clip;
   }
 
   .autoHeight {

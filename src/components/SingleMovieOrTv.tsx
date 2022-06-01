@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { mediaTypeState, tvOrMovieState } from "../atoms/Atoms";
+import { useRecoilValue } from "recoil";
+import { mediaTypeState } from "../atoms/Atoms";
 import { MovieTV } from "../typings";
 import { InfoCard } from "./";
 

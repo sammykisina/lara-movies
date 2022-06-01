@@ -14,6 +14,7 @@ import { MdOutlineCheck } from "react-icons/md";
 import { useSetRecoilState } from "recoil";
 import {
   currentMovieTvIdState,
+  mediaTypeState,
   showTrailerPlayModalState,
 } from "../atoms/Atoms";
 import { db } from "../firebase";
@@ -34,6 +35,7 @@ const InfoCard: React.FC<props> = ({ condition, media_type, tvOrMovie }) => {
   const [tvsOrMovies, setTvsOrMovies] = useState<DocumentData[] | MovieTV[]>(
     []
   );
+  const setMediaType = useSetRecoilState(mediaTypeState);
 
   const { user } = useAuth();
 
@@ -128,6 +130,7 @@ const InfoCard: React.FC<props> = ({ condition, media_type, tvOrMovie }) => {
                   purpose={() => {
                     setCurrentMovieTvId(tvOrMovie?.id);
                     setShowTrailerPLayModal(true);
+                    setMediaType(media_type!);
                   }}
                 />
 
@@ -162,6 +165,7 @@ const InfoCard: React.FC<props> = ({ condition, media_type, tvOrMovie }) => {
                 purpose={() => {
                   setCurrentMovieTvId(tvOrMovie?.id);
                   setShowTrailerPLayModal(true);
+                  setMediaType(media_type!);
                 }}
               />
 

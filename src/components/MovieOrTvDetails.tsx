@@ -29,7 +29,7 @@ const MovieOrTvDetails: React.FC = () => {
   const setMediaType = useSetRecoilState(mediaTypeState);
 
   const { id, mediaType } = useParams();
-  console.log("the selected movie of series", data?.episode_run_time);
+  console.log("the selected movie of series", data);
 
   useEffect(() => {
     if (!id) return;
@@ -68,34 +68,21 @@ const MovieOrTvDetails: React.FC = () => {
       ) : (
         <div className="relative h-[880px] md:h-[890px] lg:h-[600px]">
           {/* the bg img */}
-          {data?.backdrop_path ||
-            (data?.poster_path ? (
-              <img
-                src={`${baseURL}${data?.backdrop_path || data?.poster_path}`}
-                alt=""
-                className="object-cover h-full w-full rounded-tr-2xl rounded-bl-2xl"
-              />
-            ) : (
-              <div className="ring-1 h-full rounded-tr-2xl rounded-bl-2xl"></div>
-            ))}
-
+          <img
+            src={`${baseURL}${data?.backdrop_path || data?.poster_path}`}
+            alt=""
+            className="object-cover h-full w-full rounded-tr-2xl rounded-bl-2xl"
+          />
           <div className=" absolute top-0 left-0 h-full w-full bg-blue-500/50 from-[#007efe]/80 to-[#0060c0]/60 rounded-tr-2xl rounded-bl-2xl"></div>
 
           <div className="absolute top-0 px-2 py-2 w-full h-full lg:flex gap-4 ">
             {/* img */}
             <div className="relative lg:w-[1000px] lg:h-[530px]">
-              {data?.backdrop_path ||
-                (data?.poster_path ? (
-                  <img
-                    src={`${baseURL}${
-                      data?.backdrop_path || data?.poster_path
-                    }`}
-                    alt=""
-                    className="object-cover h-full w-full rounded-tl-3xl rounded-br-3xl"
-                  />
-                ) : (
-                  <div className="ring-1 h-[200px]  lg:h-[530px] rounded-tl-3xl rounded-br-3xl"></div>
-                ))}
+              <img
+                src={`${baseURL}${data?.backdrop_path || data?.poster_path}`}
+                alt=""
+                className="object-cover h-full w-full rounded-tl-3xl rounded-br-3xl"
+              />
 
               <div className="absolute  -bottom-[30px] p-3">
                 {data!?.vote_average > 0 && (
