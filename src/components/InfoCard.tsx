@@ -15,6 +15,7 @@ import { useSetRecoilState } from "recoil";
 import {
   currentMovieTvIdState,
   mediaTypeState,
+  showSearchModalState,
   showTrailerPlayModalState,
 } from "../atoms/Atoms";
 import { db } from "../firebase";
@@ -36,6 +37,7 @@ const InfoCard: React.FC<props> = ({ condition, media_type, tvOrMovie }) => {
     []
   );
   const setMediaType = useSetRecoilState(mediaTypeState);
+  const setShowSearchModal = useSetRecoilState(showSearchModalState);
 
   const { user } = useAuth();
 
@@ -131,6 +133,7 @@ const InfoCard: React.FC<props> = ({ condition, media_type, tvOrMovie }) => {
                     setCurrentMovieTvId(tvOrMovie?.id);
                     setShowTrailerPLayModal(true);
                     setMediaType(media_type!);
+                    setShowSearchModal(false);
                   }}
                 />
 
@@ -166,6 +169,7 @@ const InfoCard: React.FC<props> = ({ condition, media_type, tvOrMovie }) => {
                   setCurrentMovieTvId(tvOrMovie?.id);
                   setShowTrailerPLayModal(true);
                   setMediaType(media_type!);
+                  setShowSearchModal(false);
                 }}
               />
 

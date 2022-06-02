@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { HiX } from "react-icons/hi";
-import { SetterOrUpdater, useSetRecoilState } from "recoil";
+import { SetterOrUpdater, useRecoilState, useSetRecoilState } from "recoil";
 import { Icons } from "../../";
-import { showSearchModalState } from "../../../atoms/Atoms";
+import { mediaTypeState, showSearchModalState } from "../../../atoms/Atoms";
 import { API_KEY, BASE_URL } from "../../../constants/requests";
 import { MovieTV } from "../../../typings";
 import { SingleMovieOrTv, SpinnerLoader, Select } from "../../";
 import { Search } from "../../../assets";
+import MediaTypeSelect from "../../select/selectComponents/MediaTypeSelect";
+import { useLocation } from "react-router-dom";
 
 interface props {
   setShowSearchModal: SetterOrUpdater<boolean>;
   setSearchKey: React.Dispatch<React.SetStateAction<string>>;
   debouncedTerm: string;
   setDebouncedTerm: React.Dispatch<React.SetStateAction<string>>;
+  rollbackMediaType: string;
+  setMediaType: SetterOrUpdater<string>;
 }
 
 const SearchHeader: React.FC<props> = ({
@@ -20,6 +24,8 @@ const SearchHeader: React.FC<props> = ({
   setSearchKey,
   debouncedTerm,
   setDebouncedTerm,
+  rollbackMediaType,
+  setMediaType,
 }) => (
   <div className="px-3 py-2  bg-gray-900 sticky top-0 left-0 z-50">
     <Icons
@@ -27,6 +33,7 @@ const SearchHeader: React.FC<props> = ({
       purpose={() => {
         setShowSearchModal(false);
         setSearchKey("");
+        setMediaType(rollbackMediaType);
       }}
       icon={<HiX className="h-6 w-6" />}
     />
@@ -44,7 +51,10 @@ const SearchHeader: React.FC<props> = ({
       />
 
       <div>
-        <Select />
+        <Select
+          displayTitle="Select The Media Type"
+          component={<MediaTypeSelect />}
+        />
       </div>
     </div>
   </div>
@@ -56,19 +66,18 @@ const SearchModal = () => {
   const [debouncedTerm, setDebouncedTerm] = useState<string>(searchKey);
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<MovieTV[]>([]);
+  const [mediaType, setMediaType] = useRecoilState(mediaTypeState);
+  const location = useLocation();
 
   useEffect(() => {
     const timer = setTimeout(() => setSearchKey(debouncedTerm), 1000);
     return () => clearTimeout(timer);
   }, [debouncedTerm]);
 
-  console.log("data", data);
-  console.log("searchKey", searchKey);
-
   useEffect(() => {
     if (searchKey.trim() !== "") {
       const search = async () => {
-        const movieSearchApiCall = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${searchKey}&page=1&include_adult=false`;
+        const movieSearchApiCall = `${BASE_URL}/search/${mediaType}?api_key=${API_KEY}&language=en-US&query=${searchKey}&page=1`;
 
         setLoading(true);
         const response = await fetch(movieSearchApiCall).then((response) =>
@@ -86,7 +95,7 @@ const SearchModal = () => {
       setDebouncedTerm("");
       return;
     }
-  }, [searchKey]);
+  }, [searchKey, mediaType]);
 
   return (
     <div className="relative h-fit bg-gray-900 overflow-clip">
@@ -95,6 +104,8 @@ const SearchModal = () => {
         debouncedTerm={debouncedTerm}
         setDebouncedTerm={setDebouncedTerm}
         setSearchKey={setSearchKey}
+        rollbackMediaType={location.pathname === "/tv" ? "tv" : "movie"}
+        setMediaType={setMediaType}
       />
 
       {/* the movies or tvs */}
@@ -123,7 +134,7 @@ const SearchModal = () => {
                       TvOrMovie={singleData}
                       condition="watch_later"
                       conditionTwo=""
-                      // media_type={media_type!}
+                      media_type={mediaType!}
                     />
                   ))}
                 </div>
