@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { HiX } from "react-icons/hi";
 import { SetterOrUpdater, useRecoilValue, useSetRecoilState } from "recoil";
-import {
-  mediaTypeState,
-  showTvSeasonsModalState,
-  tvOrMovieState,
-} from "../../../atoms/Atoms";
+import { showTvSeasonsModalState, tvOrMovieState } from "../../../atoms/Atoms";
 import { baseURL } from "../../../constants/movieOrTv";
 import { TvSeason } from "../../../typings";
 import Icons from "../../ui/Icons";
@@ -127,7 +123,6 @@ const SingleSeason: React.FC<singleSeasonProps> = ({
 const TvSeasonsModal = () => {
   const selectedTvShow = useRecoilValue(tvOrMovieState);
   const setShowTvSeasonsModal = useSetRecoilState(showTvSeasonsModalState);
-  const mediaType = useRecoilValue(mediaTypeState);
 
   return (
     <div className=" text-white">
@@ -143,7 +138,7 @@ const TvSeasonsModal = () => {
 
       <div>
         {/* episodes */}
-        {mediaType === "tv" && (
+        {selectedTvShow?.seasons && (
           <div className="flex flex-col gap-3 px-2">
             {selectedTvShow?.seasons?.map(
               (season: TvSeason, seasonIndex: number) => (

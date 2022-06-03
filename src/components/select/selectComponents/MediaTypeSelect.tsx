@@ -21,7 +21,9 @@ const MediaTypeSelect = () => {
                   setMediaType(singleMediaType.mediaTypeName);
                 }}
               >
-                {singleMediaType.mediaTypeName}
+                {singleMediaType.mediaTypeName === "tv"
+                  ? "Series"
+                  : singleMediaType.mediaTypeName}
               </button>
             </Menu.Item>
           ))}

@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import { mediaServices } from "../constants/mediaServices";
-import { AiOutlinePlus } from "react-icons/ai";
 import requests from "../constants/requests";
 import { Link, useNavigate } from "react-router-dom";
 import { MdChevronRight } from "react-icons/md";
@@ -71,7 +69,7 @@ const Widget = () => {
           <div className="mt-10 ">
             <span className=" text-lg text-white/50">Media Service</span>
 
-            <div className="grid grid-cols-3 gap-y-4 py-4">
+            {/* <div className="grid grid-cols-3 gap-y-4 py-4">
               {mediaServices.map((mediaService, mediaServiceIndex) => {
                 const { icon } = mediaService;
                 return (
@@ -79,7 +77,7 @@ const Widget = () => {
                     key={mediaServiceIndex}
                     className="ring-1 ring-[#132f4c] w-12 h-12 flex justify-center items-center text-3xl rounded-md transition-3 hover:bg-[#132f4c]/50"
                   >
-                    {icon}
+                    <img src={icon} alt="" />
                   </button>
                 );
               })}
@@ -87,7 +85,7 @@ const Widget = () => {
               <button className=" w-12 h-12 flex justify-center items-center rounded-full transition-5 hover:bg-[#132f4c]/50 ">
                 <AiOutlinePlus className="text-3xl text-[#66b2ff]" />
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* recently viewed */}

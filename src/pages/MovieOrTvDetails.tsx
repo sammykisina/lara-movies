@@ -119,13 +119,13 @@ const MovieOrTvDetails: React.FC = () => {
                         {mediaType === "movie" ? (
                           timeConvert(data!?.runtime)
                         ) : (
-                          <span>{data?.episode_run_time} mins</span>
+                          <span>{data?.episode_run_time} mins </span>
                         )}
                       </span>
                     </div>
 
                     {mediaType === "tv" && (
-                      <div className="flex flex-col sm:flex-row gap-2 items-center ">
+                      <div className="flex flex-col gap-2 items-center ">
                         <span>No of Seasons {data?.number_of_seasons}</span>
                         <span
                           onClick={() => setShowTvSeasonsModal(true)}
