@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { MdChevronRight } from "react-icons/md";
-import { Link } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { mediaTypeState } from "../atoms/Atoms";
 import EmptyListIdentifier from "../components/EmptyListIdentifier";

@@ -42,7 +42,7 @@ const MovieTVRow: React.FC<props> = ({ data, condition, media_type }) => {
         ref={movieRowRef}
         className="flex overflow-x-scroll scrollbar-hide gap-3 py-2"
       >
-        {data.map((TvOrMovie, TvOrMovieIndex) => (
+        {data?.map((TvOrMovie, TvOrMovieIndex) => (
           <SingleMovieOrTv
             key={TvOrMovieIndex}
             TvOrMovie={TvOrMovie}

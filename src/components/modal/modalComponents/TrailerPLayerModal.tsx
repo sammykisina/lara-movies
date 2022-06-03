@@ -21,8 +21,6 @@ const TrailerPLayerModal: React.FC = () => {
     showTrailerPlayModalState
   );
 
-  console.log("trailer", trailer);
-
   useEffect(() => {
     if (!currentMovieTvId) return;
 

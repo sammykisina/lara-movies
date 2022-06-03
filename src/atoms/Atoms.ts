@@ -37,3 +37,9 @@ export const showSearchModalState = atom({
   key: "showSearchModalState",
   default: false,
 });
+
+// tv seasons modal
+export const showTvSeasonsModalState = atom({
+  key: "showTvSeasonsModalState",
+  default: false,
+});

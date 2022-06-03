@@ -5,8 +5,9 @@ import {
   currentMovieTvIdState,
   mediaTypeState,
   showTrailerPlayModalState,
-  // modalState,
+  showTvSeasonsModalState,
   trailerState,
+  tvOrMovieState,
 } from "../atoms/Atoms";
 import {
   InformationRow,
@@ -27,9 +28,9 @@ const MovieOrTvDetails: React.FC = () => {
   const setShowTrailerPLayModal = useSetRecoilState(showTrailerPlayModalState);
   const setCurrentMovieTvId = useSetRecoilState(currentMovieTvIdState);
   const setMediaType = useSetRecoilState(mediaTypeState);
-
+  const setShowTvSeasonsModal = useSetRecoilState(showTvSeasonsModalState);
+  const setSelectedTvOrMovie = useSetRecoilState(tvOrMovieState);
   const { id, mediaType } = useParams();
-  console.log("the selected movie of series", data);
 
   useEffect(() => {
     if (!id) return;
@@ -40,6 +41,7 @@ const MovieOrTvDetails: React.FC = () => {
       ).then((response) => response.json());
 
       setData(data);
+      setSelectedTvOrMovie(data);
 
       if (data?.videos) {
         const index = data?.videos?.results.findIndex(
@@ -77,7 +79,7 @@ const MovieOrTvDetails: React.FC = () => {
 
           <div className="absolute top-0 px-2 py-2 w-full h-full lg:flex gap-4 ">
             {/* img */}
-            <div className="relative lg:w-[2500px] lg:h-[530px]">
+            <div className="relative lg:w-[1500px] lg:h-[530px]">
               <img
                 src={`${baseURL}${data?.backdrop_path || data?.poster_path}`}
                 alt=""
@@ -108,18 +110,34 @@ const MovieOrTvDetails: React.FC = () => {
                 </span>
 
                 <div>
-                  <div className=" flex gap-2 items-center">
-                    {/* the release data */}
-                    <span>{data?.release_date || data?.first_air_date}</span>
-                    {/* total time */}
-                    <span className="text-sm">
-                      {mediaType === "movie"
-                        ? timeConvert(data!?.runtime)
-                        : data?.episode_run_time}
-                    </span>
+                  <div className="flex justify-between">
+                    <div className="flex gap-2 items-center">
+                      {/* the release data */}
+                      <span>{data?.release_date || data?.first_air_date}</span>
+                      {/* total time */}
+                      <span className="text-sm">
+                        {mediaType === "movie" ? (
+                          timeConvert(data!?.runtime)
+                        ) : (
+                          <span>{data?.episode_run_time} mins</span>
+                        )}
+                      </span>
+                    </div>
+
+                    {mediaType === "tv" && (
+                      <div className="flex flex-col sm:flex-row gap-2 items-center ">
+                        <span>No of Seasons {data?.number_of_seasons}</span>
+                        <span
+                          onClick={() => setShowTvSeasonsModal(true)}
+                          className="text-sm bg-[#ef4b4b] px-4 py-1 rounded-full cursor-pointer hover:text-white/50"
+                        >
+                          View
+                        </span>
+                      </div>
+                    )}
                   </div>
                   {/* genre */}
-                  <div className="flex  truncate gap-2 text-sm text-shadow-xl">
+                  <div className="flex  truncate gap-2 text-shadow-xl text-[#21d07a] text-lg">
                     {data?.genres.map((genre, genreIndex) => (
                       <span key={genreIndex}>{genre.name}</span>
                     ))}
@@ -155,7 +173,7 @@ const MovieOrTvDetails: React.FC = () => {
                   <div className="grid grid-cols-3 md:grid-cols-3 gap-y-4">
                     {crew!.slice(0, 3).map((crew: Crew, crewIndex: number) => (
                       <div key={crewIndex} className="flex flex-col">
-                        <span className=" text-gray-900 text-lg hover:underline cursor-pointer">
+                        <span className=" text-gray-900 text-sm hover:underline cursor-pointer">
                           {crew?.name}
                         </span>
                         <span>{crew?.job}</span>

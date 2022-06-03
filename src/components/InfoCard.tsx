@@ -9,8 +9,8 @@ import {
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlinePlus } from "react-icons/ai";
+import { CgPlayListRemove } from "react-icons/cg";
 import { FiPlay } from "react-icons/fi";
-import { MdOutlineCheck } from "react-icons/md";
 import { useSetRecoilState } from "recoil";
 import {
   currentMovieTvIdState,
@@ -140,7 +140,7 @@ const InfoCard: React.FC<props> = ({ condition, media_type, tvOrMovie }) => {
                 {addedToList ? (
                   <Icons
                     iconStyles="icon group"
-                    icon={<MdOutlineCheck className="text-[#66b2ff] w-7 h-7" />}
+                    icon={<CgPlayListRemove className="text-white w-7 h-7" />}
                     purpose={handleList}
                   />
                 ) : (
@@ -176,7 +176,7 @@ const InfoCard: React.FC<props> = ({ condition, media_type, tvOrMovie }) => {
               {addedToList ? (
                 <Icons
                   iconStyles="icon group"
-                  icon={<MdOutlineCheck className="text-[#66b2ff] w-7 h-7" />}
+                  icon={<CgPlayListRemove className="text-white w-7 h-7" />}
                   purpose={handleList}
                 />
               ) : (

@@ -25,3 +25,4 @@ export { default as Select } from "./select/Select";
 export { default as Modal } from "./modal/Modal";
 export { default as TrailerPLayerModal } from "./modal/modalComponents/TrailerPLayerModal";
 export { default as SearchModal } from "./modal/modalComponents/SearchModal";
+export { default as TvSeasonsModal } from "./modal/modalComponents/TvSeasonsModal";

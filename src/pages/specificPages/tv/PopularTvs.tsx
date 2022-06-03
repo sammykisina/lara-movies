@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { SpecificPagesData } from "../../../components";
 import { API_KEY, BASE_URL } from "../../../constants/requests";
 import { useGetData } from "../../../hooks";

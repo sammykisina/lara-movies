@@ -1,12 +1,9 @@
-import React from "react";
 import { MdSearch } from "react-icons/md";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { showSearchModalState, widgetState } from "../atoms/Atoms";
-import { Modal, SearchModal } from "../components";
 
 const Search = () => {
-  const [showSearchModal, setShowSearchModal] =
-    useRecoilState(showSearchModalState);
+  const setShowSearchModal = useSetRecoilState(showSearchModalState);
   const setWidget = useSetRecoilState(widgetState);
 
   return (
@@ -17,12 +14,6 @@ const Search = () => {
         setWidget(false);
       }}
     >
-      {/* search modal
-      <Modal
-        component={<SearchModal />}
-        modalState={showSearchModal}
-        type="modalHeight"
-      /> */}
       <div className="flex items-center gap-4">
         <MdSearch className="w-6 h-6 text-[#66b2ff]" />
         <span className="text-white/60">Search...</span>

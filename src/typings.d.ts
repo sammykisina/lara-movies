@@ -36,6 +36,8 @@ export interface MovieTV {
   credits: [];
   episode_run_time: number;
   seasons: TvSeason[];
+  number_of_seasons: number;
+  number_of_episodes: number;
 }
 
 export interface TV extends MovieTV {

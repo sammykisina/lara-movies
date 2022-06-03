@@ -17,7 +17,7 @@ const Notify: React.FC<props> = ({ t, titleOne, titleTwo, login }) => {
       }`}
     >
       {login ? (
-        <span>Please Login</span>
+        <Link to="/login">Click To Login </Link>
       ) : (
         <p>
           <span className=" font-bold">

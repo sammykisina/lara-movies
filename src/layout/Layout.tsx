@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {
   showSearchModalState,
   showTrailerPlayModalState,
+  showTvSeasonsModalState,
   sidebarState,
   widgetState,
 } from "../atoms/Atoms";
@@ -16,15 +17,15 @@ import {
   Widget,
   TrailerPLayerModal,
   SearchModal,
+  TvSeasonsModal,
 } from "../components";
 
 const Layout: React.FC = () => {
   const [showWidget, setShowWidget] = useRecoilState(widgetState);
   const [showSidebar, setShowSidebar] = useRecoilState(sidebarState);
-  const [showTrailerPLayModal, setShowTrailerPLayModal] = useRecoilState(
-    showTrailerPlayModalState
-  );
+  const showTrailerPLayModal = useRecoilValue(showTrailerPlayModalState);
   const showSearchModal = useRecoilValue(showSearchModalState);
+  const showTvSeasonsModal = useRecoilValue(showTvSeasonsModalState);
 
   // close the widget and the sidebar when the appRoutes body is clicked
   const handleClosingOfSidebarAndWidget = () => {
@@ -69,6 +70,13 @@ const Layout: React.FC = () => {
         <Modal
           component={<SearchModal />}
           modalState={showSearchModal}
+          type="autoModal"
+        />
+
+        {/* tv seasons modal */}
+        <Modal
+          component={<TvSeasonsModal />}
+          modalState={showTvSeasonsModal}
           type="autoModal"
         />
       </section>

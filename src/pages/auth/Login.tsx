@@ -3,6 +3,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks";
 import { SpinnerLoader, Button } from "../../components";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface Inputs {
   email: string;
@@ -20,6 +22,12 @@ const Login = () => {
       navigate("/");
     }
   }, [user, navigate]);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+    });
+  }, []);
 
   const {
     register,
@@ -49,6 +57,7 @@ const Login = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className=" absolute top-1/4  z-20 w-full sm:w-3/4 md:w-2/3 px-4 sm:left-[80px] md:left-[140px] rounded-md bg-[gray]/40 py-3 rounded-tl-3xl rounded-br-3xl"
+        data-aos="zoom-in"
       >
         <h1 className="text-4xl font-semibold mb-2">Login</h1>
         <div className="space-y-8">

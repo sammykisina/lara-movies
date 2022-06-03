@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { mediaTypeState } from "../atoms/Atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { mediaTypeState, showSearchModalState } from "../atoms/Atoms";
 import { MovieTV } from "../typings";
 import { InfoCard } from "./";
 
@@ -19,6 +19,7 @@ const SingleMovieOrTv: React.FC<props> = ({
   conditionTwo,
 }) => {
   const mediaType = useRecoilValue(mediaTypeState);
+  const setShowSearchModal = useSetRecoilState(showSearchModalState);
 
   return (
     <div
@@ -34,6 +35,9 @@ const SingleMovieOrTv: React.FC<props> = ({
         to={`/${mediaType || media_type}/${TvOrMovie.id}`}
         className={`relative w-full flex h-full
         }`}
+        onClick={() => {
+          setShowSearchModal(false);
+        }}
       >
         {TvOrMovie.backdrop_path || TvOrMovie.poster_path ? (
           <img

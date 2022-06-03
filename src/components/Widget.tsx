@@ -20,7 +20,7 @@ const Widget = () => {
 
   // sent request
   const getWidgetData = async () => {
-    const [genre, netflixOriginals] = await Promise.all([
+    const [netflixOriginals] = await Promise.all([
       fetch(requests.fetchGenres).then((res) => res.json()),
       fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
     ]);
@@ -105,7 +105,7 @@ const Widget = () => {
             </div>
 
             {/* movies */}
-            {netflixOriginals.length === 0 ? (
+            {netflixOriginals?.length === 0 ? (
               <div>holders</div>
             ) : (
               <MovieTVRow

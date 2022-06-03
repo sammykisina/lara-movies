@@ -12,8 +12,6 @@ interface props {
 const Select: React.FC<props> = ({ displayTitle, component }) => {
   const mediaType = useRecoilValue(mediaTypeState);
 
-  console.log("mediaType", mediaType);
-
   return (
     <div className=" w-fit text-right bg-[#333] rounded-md">
       <Menu as="div" className="relative inline-block text-left">
